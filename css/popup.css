@@ -1,19 +1,73 @@
-html {
-  width: 560px;
-  height: 50px;
+:root {
+	--white: #FFFFFF;
+	--gray-light: #EEEEEE;
+	--gray: #A9A9A9;
+	--gray-dark: #9A9A9A;
+	--blue-light: #75A4F4;
+	--blue: #4386FA;
+	--blue-dark: #2B74F2;
+	--red: #FF0000;
+	--blue-highlight: #E0EAF9;
 }
 
-body {
+#hotkeys {
   width: 560px;
   height: 50px;
   margin: 0;
+}
+
+#settings {
+  width: 560px;
+  height: 500px;
+  margin: 0;
+}
+
+#menu {
+
+}
+
+.menu-button {
+  width: 280px;
+  float: left;
+  height: 50px;
+  background-color: var(--blue);
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background-color: var(--blue-light);
+}
+
+.menu-button[disabled] {
+  background-color: var(--blue-dark);
+  cursor: default;
+}
+
+.menu-button[disabled] {
+  background-color: var(--blue-dark);
+}
+
+.menu-icon {
+  display: block;
+}
+
+#create-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+#edit-icon {
+  width: 30px;
+  height: 30px;
+  margin: 10px auto;
 }
 
 .button {
   display: block;
   width: 50px;
   height: 50px;
-  background-color: #4386FA;
+  background-color: var(--blue);
   float: left;
   color: white;
   font-size: 30px;
@@ -27,11 +81,11 @@ body {
 }
 
 .button:hover {
-  background-color: #75A4F4;
+  background-color: var(--blue-light);
 }
 
 .loadout-button[disabled] {
-  background-color: #A9A9A9;
+  background-color: var(--gray);
   cursor: default;
 }
 
