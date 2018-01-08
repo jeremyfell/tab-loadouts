@@ -1,0 +1,46 @@
+html {
+  width: 560px;
+  height: 50px;
+}
+
+body {
+  width: 560px;
+  height: 50px;
+  margin: 0;
+}
+
+.button {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #4386FA;
+  float: left;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  border-color: white;
+  border-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #75A4F4;
+}
+
+.loadout-button[disabled] {
+  background-color: #A9A9A9;
+  cursor: default;
+}
+
+#open-settings {
+  border-right-width: 0px;
+}
+
+#settings-icon {
+  width: 36px;
+  height: 36px;
+  margin: 7px;
+}

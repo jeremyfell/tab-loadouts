@@ -1,0 +1,10 @@
+Chrome extension
+
+
+Allows users to create tab loadouts
+Each loadout consists of up to 20 tabs
+One loadout can be set as the home loadout, which will load automatically when any chrome window is opened
+
+
+
+On popup load, if any loadout does not exist, disable the button
