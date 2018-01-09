@@ -1,3 +1,4 @@
+MAX_INPUT = 0;
 LOADOUTS = []
 HOTKEY_LOADOUTS = []
 LOADOUT_CHANGES = [];
@@ -149,6 +150,11 @@ function openSettings() {
 
 }
 
+function configureEditTab() {
+  var content = document.getElementById("content");
+  trimElement(content);
+}
+
 function configureCreateTab() {
 
   var content = document.getElementById("content");
@@ -160,36 +166,47 @@ function configureCreateTab() {
 
   var loadoutName = document.createElement("input");
 
+  var linkInputsContainer = document.createElement("div");
+  var firstLink = document.createElement("input");
+
   hotkeyDropdownMenu.id = "hotkey-dropdown-menu";
   hotkeyDropdownSelection.id = "hotkey-dropdown-selection";
   hotkeyDropdownContent.id = "hotkey-dropdown-content";
-
   hotkeyDropdownSelection.innerHTML = "Hotkey: None";
 
+  loadoutName.id = "loadout-name";
   loadoutName.setAttribute("type", "text");
+  loadoutName.setAttribute("maxlength", 20);
+  loadoutName.setAttribute("placeholder", "Loadout name");
+
+  linkInputsContainer.id = "link-inputs-container";
+  configureLinkInput(firstLink, 0);
 
   for (var i = 0; i <= 10; i++) {
-    var text = ""
+    var text = "";
     var hotkeyDropdownOption = document.createElement("div");
 
-    if (i === 0) {
-      text = "None";
-      hotkeyDropdownOption.id = "hotkey-none";
-    } else if (i < 10) {
-      text = i;
-      hotkeyDropdownOption.id = "hotkey-" + String(i);
-      if (HOTKEY_LOADOUTS[i - 1]) text += " (currently used)";
-    } else {
+    if (i < 9) {
+      text = String(i + 1);
+      hotkeyDropdownOption.id = "hotkey-" + String(i + 1);
+      hotkeyDropdownOption.dataset.value = text;
+      if (HOTKEY_LOADOUTS[i]) text += " (currently used)";
+    } else if (i === 9) {
       text = "0";
       hotkeyDropdownOption.id = "hotkey-0";
+      hotkeyDropdownOption.dataset.value = text;
       if (HOTKEY_LOADOUTS[9]) text += " (currently used)";
+    } else {
+      text = "None";
+      hotkeyDropdownOption.dataset.value = text;
+      hotkeyDropdownOption.id = "hotkey-none";
     }
 
     hotkeyDropdownOption.className = "hotkey-dropdown-option";
     hotkeyDropdownOption.innerHTML = text;
 
     hotkeyDropdownOption.addEventListener("click", function() {
-      this.parentNode.childNodes[0].innerHTML = this.innerHTML;
+      this.parentNode.parentNode.childNodes[0].innerHTML = "Hotkey: " + this.dataset.value;
     });
 
     hotkeyDropdownContent.appendChild(hotkeyDropdownOption);
@@ -198,8 +215,34 @@ function configureCreateTab() {
   hotkeyDropdownMenu.appendChild(hotkeyDropdownSelection);
   hotkeyDropdownMenu.appendChild(hotkeyDropdownContent);
 
+  linkInputsContainer.appendChild(firstLink);
+
   content.appendChild(hotkeyDropdownMenu);
   content.appendChild(loadoutName);
+  content.appendChild(linkInputsContainer);
+}
+
+function configureLinkInput(linkInput, id) {
+  linkInput.className = "link-input";
+  linkInput.setAttribute("type", "text");
+  linkInput.dataset.id = id;
+  MAX_INPUT = id;
+
+  // If an input box is the bottommost, and is filled, create a new empty bottommost input box
+  linkInput.addEventListener("keyup", function() {
+    if (this.value !== "" && parseInt(this.dataset.id) === MAX_INPUT) {
+
+      var newLinkInput = document.createElement("input");
+      configureLinkInput(newLinkInput, parseInt(this.dataset.id) + 1);
+      document.getElementById("link-inputs-container").appendChild(newLinkInput);
+
+    }
+  });
+
+  // If an input box is empty, is not currently selected, and is not the bottommost input box, remove it
+  linkInput.addEventListener("blur", function() {
+    if (this.value === "" && parseInt(this.dataset.id) !== MAX_INPUT) this.remove();
+  });
 }
 
 

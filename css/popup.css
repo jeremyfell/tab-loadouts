@@ -84,7 +84,7 @@
   background-color: #4CAF50;
   color: white;
   height: 50px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 50px;
   width: 100%;
   border: none;
@@ -129,10 +129,31 @@
 }
 
 
+#loadout-name {
+  width: 280px;
+  height: 50px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: var(--gray);
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 20px;
+  outline: 0;
+}
 
+#link-inputs-container {
+  width: 560px;
+  height: 350px;
+  overflow: auto;
+}
 
-
-
+.link-input {
+  width: 500px;
+  height: 30px;
+  border-width: 1px;
+  border-type: solid;
+  border-color: var(--gray);
+}
 
 
 .button {
