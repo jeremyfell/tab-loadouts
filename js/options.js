@@ -1,6 +1,6 @@
-function openSettings() {
+function openOptions() {
   trimElement(document.body);
-  document.body.id = "settings";
+  document.body.id = "options";
 
   var menu = document.createElement("div");
   var content = document.createElement("div");

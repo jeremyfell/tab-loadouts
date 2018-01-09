@@ -1,7 +1,2 @@
-
-
-
-
-
 configureLoadoutButtons();
-document.getElementById("open-settings").addEventListener("click", function() {openSettings()});
+document.getElementById("open-options").addEventListener("click", function() {openOptions()});

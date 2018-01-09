@@ -50,7 +50,7 @@ function configureLoadoutButtons() {
 // Highlights a loadout button when the corresponding keyboard number is pressed
 function highlightButton(loadoutNumber) {
   if (loadoutNumber === 10) {
-      document.getElementById("open-settings").style.backgroundColor = "#75A4F4";
+      document.getElementById("open-options").style.backgroundColor = "#75A4F4";
   } else {
     var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
     if (loadoutButton.getAttribute("disabled")) return;
@@ -92,6 +92,6 @@ document.addEventListener("keyup", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  (loadoutNumber === 10) ? openSettings() : openLoadout(loadoutNumber);
+  (loadoutNumber === 10) ? openOptions() : openLoadout(loadoutNumber);
 
 });
