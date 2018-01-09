@@ -88,23 +88,25 @@ function openLoadout(loadoutNumber) {
 
 }
 
-function trimBody() {
-  while (document.body.lastChild) {
-    document.body.removeChild(document.body.lastChild);
+function trimElement(element) {
+  while (element.lastChild) {
+    element.removeChild(element.lastChild);
   }
 }
 
 function openSettings() {
-  trimBody();
+  trimElement(document.body);
   document.body.id = "settings";
 
   var menu = document.createElement("div");
+  var content = document.createElement("div");
   var createButton = document.createElement("div");
   var editButton = document.createElement("div");
   var createIcon = document.createElement("img");
   var editIcon = document.createElement("img");
 
   menu.id = "menu";
+  content.id = "content";
 
   editButton.className = "menu-button";
   createButton.className = "menu-button";
@@ -141,7 +143,63 @@ function openSettings() {
   menu.appendChild(createButton);
 
   document.body.appendChild(menu);
+  document.body.appendChild(content);
 
+  configureCreateTab();
+
+}
+
+function configureCreateTab() {
+
+  var content = document.getElementById("content");
+  trimElement(content);
+
+  var hotkeyDropdownMenu = document.createElement("div");
+  var hotkeyDropdownSelection = document.createElement("div");
+  var hotkeyDropdownContent = document.createElement("div");
+
+  var loadoutName = document.createElement("input");
+
+  hotkeyDropdownMenu.id = "hotkey-dropdown-menu";
+  hotkeyDropdownSelection.id = "hotkey-dropdown-selection";
+  hotkeyDropdownContent.id = "hotkey-dropdown-content";
+
+  hotkeyDropdownSelection.innerHTML = "Hotkey: None";
+
+  loadoutName.setAttribute("type", "text");
+
+  for (var i = 0; i <= 10; i++) {
+    var text = ""
+    var hotkeyDropdownOption = document.createElement("div");
+
+    if (i === 0) {
+      text = "None";
+      hotkeyDropdownOption.id = "hotkey-none";
+    } else if (i < 10) {
+      text = i;
+      hotkeyDropdownOption.id = "hotkey-" + String(i);
+      if (HOTKEY_LOADOUTS[i - 1]) text += " (currently used)";
+    } else {
+      text = "0";
+      hotkeyDropdownOption.id = "hotkey-0";
+      if (HOTKEY_LOADOUTS[9]) text += " (currently used)";
+    }
+
+    hotkeyDropdownOption.className = "hotkey-dropdown-option";
+    hotkeyDropdownOption.innerHTML = text;
+
+    hotkeyDropdownOption.addEventListener("click", function() {
+      this.parentNode.childNodes[0].innerHTML = this.innerHTML;
+    });
+
+    hotkeyDropdownContent.appendChild(hotkeyDropdownOption);
+  }
+
+  hotkeyDropdownMenu.appendChild(hotkeyDropdownSelection);
+  hotkeyDropdownMenu.appendChild(hotkeyDropdownContent);
+
+  content.appendChild(hotkeyDropdownMenu);
+  content.appendChild(loadoutName);
 }
 
 
