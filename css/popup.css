@@ -1,12 +1,13 @@
 :root {
 	--white: #FFFFFF;
+	--green: #27ae60;
 	--gray-light: #EEEEEE;
 	--gray: #A9A9A9;
 	--gray-dark: #9A9A9A;
 	--blue-light: #75A4F4;
 	--blue: #4386FA;
 	--blue-dark: #2B74F2;
-	--red: #FF0000;
+	--red: #e74c3c;
 	--blue-highlight: #E0EAF9;
 }
 
@@ -16,7 +17,7 @@
   margin: 0;
 }
 
-#settings {
+#options {
   width: 560px;
   height: 500px;
   margin: 0;
@@ -128,17 +129,27 @@
     background-color: #3e8e41;
 }
 
+input {
+	border-color: var(--gray);
+}
 
 #loadout-name {
   width: 280px;
   height: 50px;
   border-width: 4px;
   border-style: solid;
-  border-color: var(--gray);
   text-align: center;
   font-family: Helvetica;
   font-size: 20px;
   outline: 0;
+}
+
+.loadout-name-valid {
+	border-color: var(--green);
+}
+
+.loadout-name-invalid {
+	border-color: var(--red);
 }
 
 #link-inputs-container {
@@ -149,12 +160,42 @@
 
 .link-input {
   width: 500px;
-  height: 30px;
-  border-width: 1px;
-  border-type: solid;
+  height: 40px;
+  border-width: 2px;
+  border-style: solid;
   border-color: var(--gray);
+	margin: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	outline: 0;
+	font-family: Helvetica;
+	font-size: 20px;
 }
 
+.link-input:focus {
+	border-color: var(--blue);
+}
+
+#add-loadout-button {
+	font-family: Helvetica;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	width: 560px;
+	height: 50px;
+	line-height: 50px;
+	background-color: var(--blue);
+	cursor: pointer;
+}
+
+#add-loadout-button:hover {
+	background-color: var(--blue-light);
+}
+
+#add-loadout-button[disabled] {
+	background-color: var(--gray);
+	cursor: default;
+}
 
 .button {
   display: block;
@@ -182,11 +223,11 @@
   cursor: default;
 }
 
-#open-settings {
+#open-options {
   border-right-width: 0px;
 }
 
-#settings-icon {
+#options-icon {
   width: 36px;
   height: 36px;
   margin: 7px;

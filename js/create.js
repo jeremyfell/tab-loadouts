@@ -1,5 +1,25 @@
-function validateLoadoutName() {
+//
+function validateTabLoadout() {
   var loadoutName = document.getElementById("loadout-name");
+  var linkInputs = document.getElementById("link-inputs-container").childNodes;
+  var addLoadoutButton = document.getElementById("add-loadout-button");
+
+  if (
+    (loadoutName.classList.contains("loadout-name-valid") && linkInputs[0].value !== "") ||
+    (linkInputs.length > 1 && linkInputs[1].value !== "")
+  ) {
+    addLoadoutButton.removeAttribute("disabled");
+  } else {
+    addLoadoutButton.setAttribute("disabled", true);
+  }
+
+}
+
+// Changes color of loadout name input box depending on if it is empty, invalid, or valid
+function validateLoadoutName() {
+
+  var loadoutName = document.getElementById("loadout-name");
+
   if (loadoutName.value === "") {
     loadoutName.classList.remove("loadout-name-valid");
     loadoutName.classList.remove("loadout-name-invalid");
@@ -10,6 +30,8 @@ function validateLoadoutName() {
     loadoutName.classList.add("loadout-name-valid");
     loadoutName.classList.remove("loadout-name-invalid");
   }
+
+  validateTabLoadout();
 
 }
 
@@ -37,13 +59,16 @@ function configureLinkInput(linkInput, id) {
       var newLinkInput = document.createElement("input");
       configureLinkInput(newLinkInput, parseInt(this.dataset.id) + 1);
       document.getElementById("link-inputs-container").appendChild(newLinkInput);
-      enableLoadoutButtonIfValidTabLoadout();
+
     }
+
+    validateTabLoadout();
   });
 
   // If an input box is empty, is not currently selected, and is not the bottommost input box, remove it
   linkInput.addEventListener("blur", function() {
     if (this.value === "" && parseInt(this.dataset.id) !== MAX_INPUT) this.remove();
+    validateTabLoadout();
   });
 }
 
@@ -108,6 +133,7 @@ function configureCreateTab() {
 
     hotkeyDropdownOption.addEventListener("click", function() {
       this.parentNode.parentNode.childNodes[0].innerHTML = "Hotkey: " + this.dataset.value;
+      this.parentNode.parentNode.childNodes[0].dataset.value = this.dataset.value;
     });
 
     hotkeyDropdownContent.appendChild(hotkeyDropdownOption);
