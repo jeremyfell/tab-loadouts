@@ -1,12 +1,51 @@
-//
+function setHotkeyDropdownOptionsVisibility(visible) {
+  var options = document.getElementById("hotkey-dropdown-content").childNodes;
+  for (var i = 0; i < options.length; i++) {
+    options[i].style.display = (visible) ? null : "none";
+  }
+}
+
+function addTabLoadout() {
+  var hotkeySelection = document.getElementById("hotkey-dropdown-selection");
+  var loadoutName = document.getElementById("loadout-name-input").value;
+  var linkInputs = document.getElementById("link-inputs-container").childNodes;
+
+  var hotkey = (hotkeySelection.dataset.value === "None") ? -1 : parseInt(hotkeySelection.dataset.value);
+
+  var links = [];
+
+  for (var i = 0; i < linkInputs.length; i++) {
+    if (linkInputs[i].value !== "") links.push(linkInputs[i].value);
+  }
+
+  var newTabLoadout = {
+    "name": loadoutName,
+    "hotkey": hotkey,
+    "links": links
+  }
+
+  if (hotkey !== -1 && HOTKEY_LOADOUTS[(hotkey + 9) % 10]) {
+    HOTKEY_LOADOUTS[(hotkey + 9) % 10].hotkey = -1;
+    saveLoadoutToLocalStorage(HOTKEY_LOADOUTS[(hotkey + 9) % 10]);
+  }
+
+  saveLoadoutToLocalStorage(newTabLoadout);
+
+  window.close();
+
+}
+
+
+// Enables the add tab loadout button if the loadout name input is valid, and there is at least one link
 function validateTabLoadout() {
-  var loadoutName = document.getElementById("loadout-name");
+  var loadoutNameInput = document.getElementById("loadout-name-input");
   var linkInputs = document.getElementById("link-inputs-container").childNodes;
   var addLoadoutButton = document.getElementById("add-loadout-button");
 
   if (
-    (loadoutName.classList.contains("loadout-name-valid") && linkInputs[0].value !== "") ||
-    (linkInputs.length > 1 && linkInputs[1].value !== "")
+    loadoutNameInput.classList.contains("loadout-name-input-valid")
+    &&
+    (linkInputs[0].value !== "" || (linkInputs.length > 1 && linkInputs[1].value !== ""))
   ) {
     addLoadoutButton.removeAttribute("disabled");
   } else {
@@ -16,19 +55,19 @@ function validateTabLoadout() {
 }
 
 // Changes color of loadout name input box depending on if it is empty, invalid, or valid
-function validateLoadoutName() {
+function validateloadoutNameInput() {
 
-  var loadoutName = document.getElementById("loadout-name");
+  var loadoutNameInput = document.getElementById("loadout-name-input");
 
-  if (loadoutName.value === "") {
-    loadoutName.classList.remove("loadout-name-valid");
-    loadoutName.classList.remove("loadout-name-invalid");
-  } else if (!isLoadoutNameUnused(loadoutName.value)) {
-    loadoutName.classList.add("loadout-name-invalid");
-    loadoutName.classList.remove("loadout-name-valid");
+  if (loadoutNameInput.value === "") {
+    loadoutNameInput.classList.remove("loadout-name-input-valid");
+    loadoutNameInput.classList.remove("loadout-name-input-invalid");
+  } else if (!isloadoutNameUnused(loadoutNameInput.value)) {
+    loadoutNameInput.classList.add("loadout-name-input-invalid");
+    loadoutNameInput.classList.remove("loadout-name-input-valid");
   } else {
-    loadoutName.classList.add("loadout-name-valid");
-    loadoutName.classList.remove("loadout-name-invalid");
+    loadoutNameInput.classList.add("loadout-name-input-valid");
+    loadoutNameInput.classList.remove("loadout-name-input-invalid");
   }
 
   validateTabLoadout();
@@ -36,7 +75,7 @@ function validateLoadoutName() {
 }
 
 // Returns false if the loadout name is already in use, and so is invalid for a new tab loadout
-function isLoadoutNameUnused(name) {
+function isloadoutNameUnused(name) {
   // for (var key in LOADOUTS) {
     // if (key === name) return false;
   // }
@@ -81,7 +120,7 @@ function configureCreateTab() {
   var hotkeyDropdownSelection = document.createElement("div");
   var hotkeyDropdownContent = document.createElement("div");
 
-  var loadoutName = document.createElement("input");
+  var loadoutNameInput = document.createElement("input");
 
   var linkInputsContainer = document.createElement("div");
   var firstLink = document.createElement("input");
@@ -90,15 +129,20 @@ function configureCreateTab() {
 
   hotkeyDropdownMenu.id = "hotkey-dropdown-menu";
   hotkeyDropdownSelection.id = "hotkey-dropdown-selection";
+  hotkeyDropdownSelection.addEventListener("mouseenter", function() {
+    setHotkeyDropdownOptionsVisibility(true);
+  });
+
   hotkeyDropdownContent.id = "hotkey-dropdown-content";
   hotkeyDropdownSelection.innerHTML = "Hotkey: None";
+  hotkeyDropdownSelection.dataset.value = "None";
 
-  loadoutName.id = "loadout-name";
-  loadoutName.setAttribute("type", "text");
-  loadoutName.setAttribute("maxlength", 20);
-  loadoutName.setAttribute("placeholder", "Loadout name");
-  loadoutName.addEventListener("keyup", function() {
-    validateLoadoutName();
+  loadoutNameInput.id = "loadout-name-input";
+  loadoutNameInput.setAttribute("type", "text");
+  loadoutNameInput.setAttribute("maxlength", 20);
+  loadoutNameInput.setAttribute("placeholder", "Loadout name");
+  loadoutNameInput.addEventListener("keyup", function() {
+    validateloadoutNameInput();
   });
 
   linkInputsContainer.id = "link-inputs-container";
@@ -107,6 +151,9 @@ function configureCreateTab() {
   addLoadoutButton.id = "add-loadout-button";
   addLoadoutButton.innerHTML = "Add loadout tab";
   addLoadoutButton.setAttribute("disabled", true);
+  addLoadoutButton.addEventListener("click", function() {
+    addTabLoadout();
+  });
 
   for (var i = 0; i <= 10; i++) {
     var text = "";
@@ -134,6 +181,9 @@ function configureCreateTab() {
     hotkeyDropdownOption.addEventListener("click", function() {
       this.parentNode.parentNode.childNodes[0].innerHTML = "Hotkey: " + this.dataset.value;
       this.parentNode.parentNode.childNodes[0].dataset.value = this.dataset.value;
+
+      setHotkeyDropdownOptionsVisibility(false);
+
     });
 
     hotkeyDropdownContent.appendChild(hotkeyDropdownOption);
@@ -145,7 +195,7 @@ function configureCreateTab() {
   linkInputsContainer.appendChild(firstLink);
 
   content.appendChild(hotkeyDropdownMenu);
-  content.appendChild(loadoutName);
+  content.appendChild(loadoutNameInput);
   content.appendChild(linkInputsContainer);
   content.appendChild(addLoadoutButton);
 }

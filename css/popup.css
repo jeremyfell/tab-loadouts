@@ -114,7 +114,7 @@
     font-family: Helvetica;
 }
 
-/* Change color of dropdown links on hover */
+/* Change color of dropdown options on hover */
 #hotkey-dropdown-content div:hover {
   background-color: #f1f1f1
 }
@@ -133,7 +133,7 @@ input {
 	border-color: var(--gray);
 }
 
-#loadout-name {
+#loadout-name-input {
   width: 280px;
   height: 50px;
   border-width: 4px;
@@ -144,11 +144,11 @@ input {
   outline: 0;
 }
 
-.loadout-name-valid {
+.loadout-name-input-valid {
 	border-color: var(--green);
 }
 
-.loadout-name-invalid {
+.loadout-name-input-invalid {
 	border-color: var(--red);
 }
 

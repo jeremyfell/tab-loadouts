@@ -1,0 +1,8 @@
+Bugs
+
+Add css so all of page text cannot be selected, except in inputs
+Tabbing away from an input quickly allows an invalid value to be considered valid
+
+
+Difficult to add new tab loadouts, as copy and pasting multiple links cannot be done without closing the popup
+Possibly move options to a separate options page

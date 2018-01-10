@@ -5,15 +5,22 @@ function getLoadoutsFromLocalStorage(getAll) {
 
       for (var key in storage) {
         if (storage[key].hotkey >= 0) HOTKEY_LOADOUTS[(storage[key].hotkey + 9) % 10] = storage[key];
-        if (getAll) LOADOUTS.push(storage[key]);
+        if (getAll) LOADOUTS[key] = storage[key];
+        // if (getAll) LOADOUTS.push(storage[key]);
       }
 
       if (Object.keys(storage).length === 0 && getAll) LOADOUTS = {};
+
+      // Should possibly be in popup.js, but must be called only one loadouts have been fetched
+      configureLoadoutButtons();
+
   });
 }
 
-function setLoadoutToLocalStorage(key, loadout) {
-  chrome.storage.local.set({key: loadout});
+function saveLoadoutToLocalStorage(loadout) {
+  var newTabLoadout = {};
+  newTabLoadout[loadout.name] = loadout;
+  chrome.storage.local.set(newTabLoadout);
 }
 
 function removeLoadoutFromLocalStorage(key) {
