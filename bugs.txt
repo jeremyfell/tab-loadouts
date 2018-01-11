@@ -6,3 +6,12 @@ Tabbing away from an input quickly allows an invalid value to be considered vali
 
 Difficult to add new tab loadouts, as copy and pasting multiple links cannot be done without closing the popup
 Possibly move options to a separate options page
+
+
+
+
+Todo
+Move options to separate options page
+Add settings tab
+  - Toggle between replacing tabs and adding tabs when a tab loadout is used
+Add edit tab functionality

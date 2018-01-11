@@ -27,6 +27,12 @@
 		"scripts": ["js/background.js"]
 	},
 
+	"options_ui": {
+		"page": "html/options.html",
+		"chrome_style": false,
+		"open_in_tab": true
+	},
+
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {

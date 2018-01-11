@@ -1,0 +1,202 @@
+:root {
+	--white: #FFFFFF;
+	--green: #27ae60;
+	--gray-light: #EEEEEE;
+	--gray: #A9A9A9;
+	--gray-dark: #9A9A9A;
+	--blue-light: #75A4F4;
+	--blue: #4386FA;
+	--blue-dark: #2B74F2;
+	--red: #e74c3c;
+	--blue-highlight: #E0EAF9;
+}
+
+body {
+	background-color: #F2F5F9;
+}
+
+.hidden {
+	display: none;
+}
+
+#options {
+  width: 560px;
+  height: 535px;
+  margin: auto;
+	background-color: #FFFFFF;
+}
+
+#menu {
+  display: block;
+  width: 560px;
+  height: 50px;
+  margin: 0;
+}
+
+.menu-button {
+  width: 280px;
+  float: left;
+  height: 50px;
+  background-color: var(--blue);
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background-color: var(--blue-light);
+}
+
+.menu-button[disabled] {
+  background-color: var(--blue-dark);
+  cursor: default;
+}
+
+.menu-button[disabled] {
+  background-color: var(--blue-dark);
+}
+
+.menu-icon {
+  display: block;
+}
+
+#create-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+#edit-icon {
+  width: 30px;
+  height: 30px;
+  margin: 10px auto;
+}
+
+#content {
+  width: 560px;
+  height: 450px;
+  margin: 0;
+}
+
+#hotkey-dropdown-menu {
+  position: relative;
+  display: inline-block;
+  width: 280px;
+  float: left;
+}
+
+#hotkey-dropdown-selection {
+  font-family: Helvetica;
+  background-color: #4CAF50;
+  color: white;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  width: 280px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#hotkey-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 280px;
+  z-index: 1;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.hotkey-dropdown-option {
+    color: black;
+    height: 35px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    font-family: Helvetica;
+		cursor: pointer;
+}
+
+/* Change color of dropdown options on hover */
+#hotkey-dropdown-content div:hover {
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+#hotkey-dropdown-menu:hover #hotkey-dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+#hotkey-dropdown-menu:hover #hotkey-dropdown-selection {
+    background-color: #3e8e41;
+}
+
+input {
+	border-color: var(--gray);
+}
+
+#loadout-name-input {
+  width: 280px;
+  height: 50px;
+  border-width: 4px;
+  border-style: solid;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 20px;
+  outline: 0;
+}
+
+.loadout-name-input-valid {
+	border-color: var(--green);
+}
+
+.loadout-name-input-invalid {
+	border-color: var(--red);
+}
+
+#link-inputs-container {
+  width: 560px;
+  height: 385px;
+  overflow: auto;
+}
+
+.link-input {
+  width: 500px;
+  height: 40px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--gray);
+	margin: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	outline: 0;
+	font-family: Helvetica;
+	font-size: 20px;
+}
+
+.link-input:focus {
+	border-color: var(--blue);
+}
+
+#add-loadout-button {
+	font-family: Helvetica;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	width: 560px;
+	height: 50px;
+	line-height: 50px;
+	background-color: var(--blue);
+	cursor: pointer;
+}
+
+#add-loadout-button:hover {
+	background-color: var(--blue-light);
+}
+
+#add-loadout-button[disabled] {
+	background-color: var(--gray);
+	cursor: default;
+}
