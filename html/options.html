@@ -10,11 +10,11 @@
     <div id="options">
 
       <div id="menu">
-        <div id="edit-button" class="menu-button">
+        <div id="edit-button" class="menu-button" title="Edit tab loadouts">
           <img id="edit-icon" class="menu-icon" src="../svg/edit.svg"><img>
         </div>
 
-        <div id="create-button" class="menu-button" disabled>
+        <div id="create-button" class="menu-button" title="Add tab loadout" disabled>
           <img id="create-icon" class="menu-icon" src="../svg/add.svg"><img>
         </div>
 
@@ -45,13 +45,15 @@
 
         <input id="loadout-name-input" type="text" maxlength=20, placeholder="Loadout name"></input>
         <div id="link-inputs-container"></div>
-        <input id="add-loadout-button" type="button" disabled value="Add loadout tab"></input>
+        <div id="add-loadout-button" type="button" title="Save new tab loadout" disabled>
+          <img id="save-icon" src="../svg/save.svg"></img>
+        </div>
 
       </div>
 
 
       <div id="edit-content" class="content">
-
+        <div id="loadout-edit-container"></div>
       </div>
 
 

@@ -1,6 +1,7 @@
-function configureLoadoutEdit(loadoutEdit) {
+function configureLoadoutEdit(loadoutEdit, isHotkey) {
 
 
+  var statusIcon = document.createElement("img");
 
   var loadoutEditNameInput = document.createElement("div");
 
@@ -12,9 +13,11 @@ function configureLoadoutEdit(loadoutEdit) {
 
   loadoutEdit.className = "loadout-edit";
 
+  statusIcon.className = isHotkey ? "hotkey-icon" : "other-icon";
+  statusIcon.src = isHotkey ? "../svg/hotkey.svg" : "../svg/other.svg";
 
   editLinksButton.className = "edit-links-button";
-  editLinksIcon.className = "links-icon";
+  editLinksIcon.className = "link-icon";
   editLinksIcon.src = "../svg/link.svg";
 
   deleteLoadoutButton.className = "delete-loadout-button";
@@ -26,6 +29,10 @@ function configureLoadoutEdit(loadoutEdit) {
   editLinksButton.appendChild(editLinksIcon);
   deleteLoadoutButton.appendChild(deleteLoadoutIcon);
 
+  loadoutEdit.appendChild(statusIcon);
+  loadoutEdit.appendChild(editLinksButton);
+  loadoutEdit.appendChild(deleteLoadoutButton);
+
 }
 
 function resetEditTab() {
@@ -34,7 +41,7 @@ function resetEditTab() {
 
   for (var i = 0; i < HOTKEY_LOADOUTS.length; i++) {
     var loadoutEdit = document.createElement("div");
-    configureLoadoutEdit(loadoutEdit);
+    configureLoadoutEdit(loadoutEdit, true);
     loadoutEditContainer.appendChild(loadoutEdit);
   }
 

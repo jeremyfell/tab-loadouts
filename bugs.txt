@@ -1,9 +1,5 @@
 Bugs
 
-Test on keypress to validate instead
-Must test for current input + key just pressed
-
-
 Add css so all of page text cannot be selected, except in inputs
 Tabbing away from an input quickly allows an invalid value to be considered valid
 
