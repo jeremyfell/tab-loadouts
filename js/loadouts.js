@@ -92,6 +92,6 @@ document.addEventListener("keyup", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  (loadoutNumber === 10) ? openOptions() : openLoadout(loadoutNumber);
+  (loadoutNumber === 10) ? chrome.runtime.openOptionsPage() : openLoadout(loadoutNumber);
 
 });

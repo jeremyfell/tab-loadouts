@@ -33,8 +33,8 @@ function addTabLoadout() {
 
   saveLoadoutToLocalStorage(newTabLoadout);
 
-  window.close();
-
+  // window.close();
+  resetCreateTab();
 }
 
 
@@ -57,7 +57,7 @@ function validateTabLoadout() {
 }
 
 // Changes color of loadout name input box depending on if it is empty, invalid, or valid
-function validateloadoutNameInput() {
+function validateLoadoutNameInput() {
 
   var loadoutNameInput = document.getElementById("loadout-name-input");
 
@@ -89,6 +89,7 @@ function configureLinkInput(linkInput, id) {
   linkInput.className = "link-input";
   linkInput.setAttribute("type", "text");
   linkInput.setAttribute("spellcheck", false);
+  linkInput.setAttribute("placeholder", "New link");
   linkInput.dataset.id = id;
   MAX_INPUT = id;
 
@@ -117,19 +118,22 @@ function configureLinkInput(linkInput, id) {
 
 function resetCreateTab() {
   var hotkeyDropdownSelection = document.getElementById("hotkey-dropdown-selection");
+  var loadoutNameInput = document.getElementById("loadout-name-input");
+  var linkInputs = document.getElementsByClassName("link-input");
+  var addLoadoutButton = document.getElementById("add-loadout-button");
   hotkeyDropdownSelection.innerHTML = "Hotkey: None";
   hotkeyDropdownSelection.dataset.value = "None";
 
-  var loadoutNameInput = document.getElementById("loadout-name-input");
   loadoutNameInput.value = "";
   loadoutNameInput.classList.remove("loadout-name-input-valid");
   loadoutNameInput.classList.remove("loadout-name-input-invalid");
 
-  var linkInputsContainer = document.getElementById("link-inputs-container");
-  while (linkInputsContainer.childNodes.length > 1) {
-    linkInputsContainer.removeChild(linkInputsContainer.lastChild);
+  while(linkInputs.length > 1) {
+    linkInputs[linkInputs.length - 1].parentNode.removeChild(linkInputs[linkInputs.length - 1]);
   }
-  linkInputsContainer.childNodes[0].value = "";
+  linkInputs[0].value = "";
+
+  addLoadoutButton.setAttribute("disabled", true);
 }
 
 
@@ -151,7 +155,11 @@ function configureCreateTab() {
   });
 
   loadoutNameInput.addEventListener("keyup", function() {
-    validateloadoutNameInput();
+    validateLoadoutNameInput();
+  });
+
+  loadoutNameInput.addEventListener("change", function() {
+    validateLoadoutNameInput();
   });
 
   configureLinkInput(firstLink, 0);

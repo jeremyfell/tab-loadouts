@@ -28,13 +28,13 @@ body {
 
 #menu {
   display: block;
-  width: 560px;
+  width: 100%;
   height: 50px;
   margin: 0;
 }
 
 .menu-button {
-  width: 280px;
+  width: 50%;
   float: left;
   height: 50px;
   background-color: var(--blue);
@@ -79,7 +79,7 @@ body {
 #hotkey-dropdown-menu {
   position: relative;
   display: inline-block;
-  width: 280px;
+  width: 50%;
   float: left;
 }
 
@@ -90,7 +90,7 @@ body {
   height: 50px;
   font-size: 20px;
   line-height: 50px;
-  width: 280px;
+  width: 100%;
   border: none;
   text-align: center;
   cursor: pointer;
@@ -100,7 +100,7 @@ body {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 280px;
+  min-width: 100%;
   z-index: 1;
   max-height: 400px;
   overflow: auto;
@@ -138,7 +138,7 @@ input {
 }
 
 #loadout-name-input {
-  width: 280px;
+  width: 50%;
   height: 50px;
   border-width: 4px;
   border-style: solid;
@@ -157,18 +157,21 @@ input {
 }
 
 #link-inputs-container {
-  width: 560px;
+  width: 100%;
   height: 385px;
   overflow: auto;
 }
 
 .link-input {
-  width: 500px;
+	display: block;
+  width: 90%;
   height: 40px;
   border-width: 2px;
   border-style: solid;
   border-color: var(--gray);
 	margin: 5px;
+	margin-left: auto;
+	margin-right: auto;
 	padding-left: 5px;
 	padding-right: 5px;
 	outline: 0;
@@ -187,6 +190,7 @@ input {
 	color: white;
 	width: 560px;
 	height: 50px;
+	border-style: none;
 	line-height: 50px;
 	background-color: var(--blue);
 	cursor: pointer;

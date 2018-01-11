@@ -12,7 +12,7 @@ function getLoadoutsFromLocalStorage(getAll) {
       if (Object.keys(storage).length === 0 && getAll) LOADOUTS = {};
 
       // Should possibly be in popup.js, but must be called only one loadouts have been fetched
-      configureLoadoutButtons();
+      if (!getAll) configureLoadoutButtons();
 
   });
 }

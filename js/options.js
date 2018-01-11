@@ -1,6 +1,6 @@
 function setupOptionsPage() {
 
-  var editButton = document.createElement("edit-button");
+  var editButton = document.getElementById("edit-button");
   var createButton = document.getElementById("create-button");
 
   editButton.addEventListener("click", function() {
@@ -20,4 +20,5 @@ function setupOptionsPage() {
   configureCreateTab();
 }
 
+getLoadoutsFromLocalStorage(true);
 setupOptionsPage();
