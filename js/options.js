@@ -8,6 +8,7 @@ function setupOptionsPage() {
     this.setAttribute("disabled", true);
     document.getElementById("create-content").classList.add("hidden");
     document.getElementById("edit-content").classList.remove("hidden");
+    resetEditTab();
   });
 
   createButton.addEventListener("click", function() {
@@ -15,10 +16,10 @@ function setupOptionsPage() {
     this.setAttribute("disabled", true);
     document.getElementById("edit-content").classList.add("hidden");
     document.getElementById("create-content").classList.remove("hidden");
+    resetCreateTab();
   })
 
   configureCreateTab();
 }
 
 getLoadoutsFromLocalStorage(true);
-setupOptionsPage();

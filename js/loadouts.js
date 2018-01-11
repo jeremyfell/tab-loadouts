@@ -31,7 +31,6 @@ function openLoadout(loadoutNumber) {
 
 function configureLoadoutButtons() {
   loadoutButtons = document.getElementsByClassName("loadout-button");
-
   for (var i = 0; i < 10; i++) {
     // Disables unused loadout buttons
     if (!HOTKEY_LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
