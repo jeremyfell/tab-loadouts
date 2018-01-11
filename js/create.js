@@ -1,14 +1,16 @@
+//
 function setHotkeyDropdownOptionsVisibility(visible) {
-  var options = document.getElementById("hotkey-dropdown-content").childNodes;
+  var options = document.getElementsByClassName("hotkey-dropdown-option");
   for (var i = 0; i < options.length; i++) {
     options[i].style.display = (visible) ? null : "none";
   }
 }
 
+// Creates a new tab loadout with the information specified in the page, and saves it to storage
 function addTabLoadout() {
   var hotkeySelection = document.getElementById("hotkey-dropdown-selection");
   var loadoutName = document.getElementById("loadout-name-input").value;
-  var linkInputs = document.getElementById("link-inputs-container").childNodes;
+  var linkInputs = document.getElementsByClassName("link-input");
 
   var hotkey = (hotkeySelection.dataset.value === "None") ? -1 : parseInt(hotkeySelection.dataset.value);
 
@@ -111,91 +113,78 @@ function configureLinkInput(linkInput, id) {
   });
 }
 
+
+
+function resetCreateTab() {
+  var hotkeyDropdownSelection = document.getElementById("hotkey-dropdown-selection");
+  hotkeyDropdownSelection.innerHTML = "Hotkey: None";
+  hotkeyDropdownSelection.dataset.value = "None";
+
+  var loadoutNameInput = document.getElementById("loadout-name-input");
+  loadoutNameInput.value = "";
+  loadoutNameInput.classList.remove("loadout-name-input-valid");
+  loadoutNameInput.classList.remove("loadout-name-input-invalid");
+
+  var linkInputsContainer = document.getElementById("link-inputs-container");
+  while (linkInputsContainer.childNodes.length > 1) {
+    linkInputsContainer.removeChild(linkInputsContainer.lastChild);
+  }
+  linkInputsContainer.childNodes[0].value = "";
+}
+
+
+
 function configureCreateTab() {
 
-  var content = document.getElementById("content");
-  trimElement(content);
+  var hotkeyDropdownSelection = document.getElementById("hotkey-dropdown-selection");
+  var hotkeyDropdownOptions = document.getElementsByClassName("hotkey-dropdown-option");
+  var loadoutNameInput = document.getElementById("loadout-name-input");
 
-  var hotkeyDropdownMenu = document.createElement("div");
-  var hotkeyDropdownSelection = document.createElement("div");
-  var hotkeyDropdownContent = document.createElement("div");
+  var linkInputsContainer = document.getElementById("link-inputs-container");
 
-  var loadoutNameInput = document.createElement("input");
-
-  var linkInputsContainer = document.createElement("div");
   var firstLink = document.createElement("input");
 
-  var addLoadoutButton = document.createElement("div");
+  var addLoadoutButton = document.getElementById("add-loadout-button");
 
-  hotkeyDropdownMenu.id = "hotkey-dropdown-menu";
-  hotkeyDropdownSelection.id = "hotkey-dropdown-selection";
   hotkeyDropdownSelection.addEventListener("mouseenter", function() {
     setHotkeyDropdownOptionsVisibility(true);
   });
 
-  hotkeyDropdownContent.id = "hotkey-dropdown-content";
-  hotkeyDropdownSelection.innerHTML = "Hotkey: None";
-  hotkeyDropdownSelection.dataset.value = "None";
-
-  loadoutNameInput.id = "loadout-name-input";
-  loadoutNameInput.setAttribute("type", "text");
-  loadoutNameInput.setAttribute("maxlength", 20);
-  loadoutNameInput.setAttribute("placeholder", "Loadout name");
   loadoutNameInput.addEventListener("keyup", function() {
     validateloadoutNameInput();
   });
 
-  linkInputsContainer.id = "link-inputs-container";
   configureLinkInput(firstLink, 0);
 
-  addLoadoutButton.id = "add-loadout-button";
-  addLoadoutButton.innerHTML = "Add loadout tab";
-  addLoadoutButton.setAttribute("disabled", true);
   addLoadoutButton.addEventListener("click", function() {
     addTabLoadout();
   });
 
   for (var i = 0; i <= 10; i++) {
     var text = "";
-    var hotkeyDropdownOption = document.createElement("div");
-
     if (i < 9) {
       text = String(i + 1);
-      hotkeyDropdownOption.id = "hotkey-" + String(i + 1);
-      hotkeyDropdownOption.dataset.value = text;
       if (HOTKEY_LOADOUTS[i]) text += " (currently used)";
     } else if (i === 9) {
       text = "0";
-      hotkeyDropdownOption.id = "hotkey-0";
-      hotkeyDropdownOption.dataset.value = text;
       if (HOTKEY_LOADOUTS[9]) text += " (currently used)";
     } else {
       text = "None";
-      hotkeyDropdownOption.dataset.value = text;
-      hotkeyDropdownOption.id = "hotkey-none";
     }
 
-    hotkeyDropdownOption.className = "hotkey-dropdown-option";
-    hotkeyDropdownOption.innerHTML = text;
+    hotkeyDropdownOptions[i].innerHTML = text;
 
-    hotkeyDropdownOption.addEventListener("click", function() {
-      this.parentNode.parentNode.childNodes[0].innerHTML = "Hotkey: " + this.dataset.value;
-      this.parentNode.parentNode.childNodes[0].dataset.value = this.dataset.value;
+    hotkeyDropdownOptions[i].addEventListener("click", function() {
+      var selection = document.getElementById("hotkey-dropdown-selection");
+      selection.innerHTML = "Hotkey: " + this.dataset.value;
+      selection.dataset.value = this.dataset.value;
 
       setHotkeyDropdownOptionsVisibility(false);
 
     });
 
-    hotkeyDropdownContent.appendChild(hotkeyDropdownOption);
   }
-
-  hotkeyDropdownMenu.appendChild(hotkeyDropdownSelection);
-  hotkeyDropdownMenu.appendChild(hotkeyDropdownContent);
 
   linkInputsContainer.appendChild(firstLink);
 
-  content.appendChild(hotkeyDropdownMenu);
-  content.appendChild(loadoutNameInput);
-  content.appendChild(linkInputsContainer);
-  content.appendChild(addLoadoutButton);
 }
