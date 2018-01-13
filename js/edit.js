@@ -1,7 +1,11 @@
 function configureLoadoutEdit(loadoutEdit, isHotkey) {
 
-
+  var statusContainer = document.createElement("div");
   var statusIcon = document.createElement("img");
+
+  var hotkeyDropdownMenu = document.createElement("div");
+  var hotkeyDropdownSelection = document.createElement("div");
+  var hotkeyDropdownContent = document.createElement("div");
 
   var loadoutEditNameInput = document.createElement("div");
 
@@ -13,8 +17,15 @@ function configureLoadoutEdit(loadoutEdit, isHotkey) {
 
   loadoutEdit.className = "loadout-edit";
 
+  statusContainer.className = "status-container";
   statusIcon.className = isHotkey ? "hotkey-icon" : "other-icon";
   statusIcon.src = isHotkey ? "../svg/hotkey.svg" : "../svg/other.svg";
+
+
+  hotkeyDropdownMenu.className = "hotkey-edit-menu";
+  hotkeyDropdownSelection.className = "hotkey-edit-selection";
+  hotkeyDropdownContent.className = "hotkey-edit-content";
+
 
   editLinksButton.className = "edit-links-button";
   editLinksIcon.className = "link-icon";
@@ -25,11 +36,16 @@ function configureLoadoutEdit(loadoutEdit, isHotkey) {
   deleteLoadoutIcon.className = "delete-icon";
   deleteLoadoutIcon.src = "../svg/delete.svg";
 
+  statusContainer.appendChild(statusIcon);
+
+  hotkeyDropdownMenu.appendChild(hotkeyDropdownSelection);
+  hotkeyDropdownMenu.appendChild(hotkeyDropdownContent);
 
   editLinksButton.appendChild(editLinksIcon);
   deleteLoadoutButton.appendChild(deleteLoadoutIcon);
 
-  loadoutEdit.appendChild(statusIcon);
+  loadoutEdit.appendChild(statusContainer);
+  loadoutEdit.appendChild(hotkeyDropdownMenu);
   loadoutEdit.appendChild(editLinksButton);
   loadoutEdit.appendChild(deleteLoadoutButton);
 

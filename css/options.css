@@ -211,36 +211,118 @@ input {
 	pointer-events: none;
 }
 
-.loadout-edit {
-	width: 90%;
-	height: 50px;
-	margin: 5px;
-	background-color: var(--blue);
-}
-
 #loadout-edit-container {
 	width: 100%;
 	height: 485px;
 	overflow: auto;
 }
 
+.loadout-edit {
+	width: 90%;
+	height: 40px;
+	margin: 10px auto;
+	background-color: var(--blue);
+}
+
+.status-container {
+	height: 50px;
+	width: 30px;
+	margin: 0;
+	float: left;
+}
+
 .link-icon {
 	width: 30px;
 	height: 30px;
+	padding: 5px;
 }
 
 .delete-icon {
 	width: 30px;
 	height: 30px;
+	padding: 5px;
 }
 
 .hotkey-icon {
 	width: 30px;
 	height: 30px;
-	margin: 10px;
+	padding: 5px 0;
 }
 
 .other-icon {
 	width: 30px;
 	height: 30px;
+}
+
+
+.hotkey-edit-menu {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  float: left;
+}
+
+.hotkey-edit-selection {
+  font-family: Helvetica;
+  background-color: #4CAF50;
+  color: white;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hotkey-edit-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  z-index: 1;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.hotkey-edit-option {
+    color: black;
+    height: 35px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: center;
+    font-family: Helvetica;
+		cursor: pointer;
+}
+
+/* Change color of dropdown options on hover */
+.hotkey-edit-content div:hover {
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.hotkey-edit-menu:hover .hotkey-edit-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.hotkey-edit-menu:hover .hotkey-edit-selection {
+    background-color: #3e8e41;
+}
+
+
+.edit-links-button {
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	float: left;
+}
+
+.delete-loadout-button {
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	float: right;
 }
