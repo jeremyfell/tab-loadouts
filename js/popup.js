@@ -1,4 +1,9 @@
-getLoadoutsFromLocalStorage(false);
+getLoadoutsFromLocalStorage();
+
 document.getElementById("open-options").addEventListener("click", function() {
-  chrome.runtime.openOptionsPage();
+  openEditTab();
 });
+
+document.getElementById("close-options").addEventListener("click", function() {
+  closeEditTab();
+})

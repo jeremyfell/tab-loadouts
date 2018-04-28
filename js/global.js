@@ -1,6 +1,5 @@
 MAX_INPUT = 0;
-LOADOUTS = {};
-HOTKEY_LOADOUTS = [];
+LOADOUTS = [];
 LOADOUT_CHANGES = [];
 // HOTKEY_LOADOUTS = [
 //   {
@@ -16,4 +15,3 @@ LOADOUT_CHANGES = [];
 //
 //   , null, 3, 4, null, null, null, null, null, null
 // ];
-HOTKEY_LOADOUTS = [];

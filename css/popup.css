@@ -4,6 +4,7 @@
 	--gray-light: #EEEEEE;
 	--gray-dark: #9A9A9A;
 	--green: #27ae60;
+	
 	--blue: #4386FA;
 	--blue-light: #75A4F4;
 	--blue-dark: #2B74F2;
@@ -60,17 +61,25 @@
 }
 
 
-.loadout-button {
+.loadout-button, .edit-button {
 	background-color: var(--blue);
 }
 
-.loadout-button:hover {
+.loadout-button:hover, .edit-button:hover {
 	  background-color: var(--blue-light);
 }
 
 .loadout-button[disabled], .delete-button[disabled] {
   background-color: var(--gray);
   cursor: default;
+}
+
+.add-button {
+	background-color: var(--green);
+}
+
+.add-button:hover {
+	background-color: var(--green-light);
 }
 
 .swap-button {
@@ -131,4 +140,11 @@
 	width: 36px;
 	height: 36px;
 	margin: 7px;
+}
+
+#loadout-name {
+	width: 560px;
+	height: 50px;
+	border-style: solid;
+	border-color: var(--gray);
 }

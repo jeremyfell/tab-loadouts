@@ -1,7 +1,7 @@
 function openLoadout(loadoutNumber) {
   if (document.getElementById("open-loadout-" + String(loadoutNumber)).getAttribute("disabled")) return;
 
-  var currentLoadoutLinks = HOTKEY_LOADOUTS[(loadoutNumber + 9) % 10].links;
+  var currentLoadoutLinks = LOADOUTS[(loadoutNumber + 9) % 10].links;
   if (currentLoadoutLinks.length === 0) return;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
@@ -33,7 +33,7 @@ function configureLoadoutButtons() {
   loadoutButtons = document.getElementsByClassName("loadout-button");
   for (var i = 0; i < 10; i++) {
     // Disables unused loadout buttons
-    if (!HOTKEY_LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
+    if (!LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
 
     // Adds click event to open the corresponding loadout
     loadoutButtons[i].addEventListener("click", function() {
@@ -41,7 +41,7 @@ function configureLoadoutButtons() {
     });
 
     // Sets title to the corresponding loadout name
-    if (HOTKEY_LOADOUTS[i]) loadoutButtons[i].title = HOTKEY_LOADOUTS[i].name;
+    if (LOADOUTS[i]) loadoutButtons[i].title = LOADOUTS[i].name;
 
   }
 }
@@ -91,6 +91,32 @@ document.addEventListener("keyup", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  (loadoutNumber === 10) ? chrome.runtime.openOptionsPage() : openLoadout(loadoutNumber);
+  (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
 
 });
+
+
+function configureEditButtons() {
+  editButtons = document.getElementsByClassName("edit-button");
+  for (var i = 0; i < 10; i++) {
+
+    if (LOADOUTS[i]) {
+      editButtons[i].title = "Overwrite";
+      editButtons[i].classList.remove("add-button");
+      editButtons[i].classList.add("edit-button");
+    } else {
+      editButtons[i].title = "Add";
+    }
+
+
+    // Disables unused loadout buttons
+    if (!LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
+
+    // Adds click event to open the corresponding loadout
+    loadoutButtons[i].addEventListener("click", function() {
+      openLoadout(parseInt(this.id[this.id.length - 1]));
+    });
+
+
+  }
+}

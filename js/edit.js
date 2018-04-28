@@ -1,66 +1,12 @@
-function configureLoadoutEdit(loadoutEdit, isHotkey) {
-
-  var statusContainer = document.createElement("div");
-  var statusIcon = document.createElement("img");
-
-  var hotkeyDropdownMenu = document.createElement("div");
-  var hotkeyDropdownSelection = document.createElement("div");
-  var hotkeyDropdownContent = document.createElement("div");
-
-  var loadoutEditNameInput = document.createElement("div");
-
-  var editLinksButton = document.createElement("div");
-  var editLinksIcon = document.createElement("img");
-
-  var deleteLoadoutButton = document.createElement("div");
-  var deleteLoadoutIcon = document.createElement("img");
-
-  loadoutEdit.className = "loadout-edit";
-
-  statusContainer.className = "status-container";
-  statusIcon.className = isHotkey ? "hotkey-icon" : "other-icon";
-  statusIcon.src = isHotkey ? "../svg/hotkey.svg" : "../svg/other.svg";
-
-
-  hotkeyDropdownMenu.className = "hotkey-edit-menu";
-  hotkeyDropdownSelection.className = "hotkey-edit-selection";
-  hotkeyDropdownContent.className = "hotkey-edit-content";
-
-
-  editLinksButton.className = "edit-links-button";
-  editLinksIcon.className = "link-icon";
-  editLinksIcon.src = "../svg/link.svg";
-
-  deleteLoadoutButton.className = "delete-loadout-button";
-
-  deleteLoadoutIcon.className = "delete-icon";
-  deleteLoadoutIcon.src = "../svg/delete.svg";
-
-  statusContainer.appendChild(statusIcon);
-
-  hotkeyDropdownMenu.appendChild(hotkeyDropdownSelection);
-  hotkeyDropdownMenu.appendChild(hotkeyDropdownContent);
-
-  editLinksButton.appendChild(editLinksIcon);
-  deleteLoadoutButton.appendChild(deleteLoadoutIcon);
-
-  loadoutEdit.appendChild(statusContainer);
-  loadoutEdit.appendChild(hotkeyDropdownMenu);
-  loadoutEdit.appendChild(editLinksButton);
-  loadoutEdit.appendChild(deleteLoadoutButton);
+function openEditTab() {
+  document.body.className = "edit-body";
+  document.getElementById("select-tab").classList.add("invisible");
+  document.getElementById("edit-tab").classList.remove("invisible");
 
 }
 
-function resetEditTab() {
-
-  var loadoutEditContainer = document.getElementById("loadout-edit-container");
-
-  for (var i = 0; i < HOTKEY_LOADOUTS.length; i++) {
-    var loadoutEdit = document.createElement("div");
-    configureLoadoutEdit(loadoutEdit, true);
-    loadoutEditContainer.appendChild(loadoutEdit);
-  }
-
-
-
+function closeEditTab() {
+  document.body.className = "select-body";
+  document.getElementById("select-tab").classList.remove("invisible");
+  document.getElementById("edit-tab").classList.add("invisible");
 }
