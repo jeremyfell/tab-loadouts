@@ -1,27 +1,52 @@
 :root {
 	--white: #FFFFFF;
-	--green: #27ae60;
-	--gray-light: #EEEEEE;
 	--gray: #A9A9A9;
+	--gray-light: #EEEEEE;
 	--gray-dark: #9A9A9A;
-	--blue-light: #75A4F4;
+	--green: #27ae60;
 	--blue: #4386FA;
+	--blue-light: #75A4F4;
 	--blue-dark: #2B74F2;
-	--red: #e74c3c;
 	--blue-highlight: #E0EAF9;
+	--red: #e74c3c;
+	--red-light: #EEEEEE;
+	--yellow: #F4C12A;
+	--yellow-light: #F5D63C;
+	--yellow-dark: #EC9325;
+
 }
 
-#hotkeys {
-  width: 560px;
-  height: 50px;
-  margin: 0;
+.select-body {
+	width: 560px;
+	height: 50px;
+	margin: 0;
+
+}
+
+.edit-body {
+	width: 560px;
+	height: 200px;
+	margin: 0;
+}
+
+#select-tab {
+
+
+}
+
+.invisible {
+	display: none;
+}
+
+
+#edit-tab {
+
 }
 
 .button {
   display: block;
   width: 50px;
   height: 50px;
-  background-color: var(--blue);
   float: left;
   color: white;
   font-size: 30px;
@@ -34,13 +59,56 @@
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: var(--blue-light);
+
+.loadout-button {
+	background-color: var(--blue);
 }
 
-.loadout-button[disabled] {
+.loadout-button:hover {
+	  background-color: var(--blue-light);
+}
+
+.loadout-button[disabled], .delete-button[disabled] {
   background-color: var(--gray);
   cursor: default;
+}
+
+.swap-button {
+	background-color: var(--yellow);
+}
+
+.swap-button:hover {
+	background-color: var(--yellow-light);
+}
+
+.delete-button {
+	background-color: var(--red);
+}
+
+.delete-button:hover {
+	background-color: var(--red-light);
+}
+
+#close-options {
+	display: block;
+	width: 50px;
+	height: 125px;
+	padding-top: 75px;
+  background-color: var(--blue);
+  float: right;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  border-color: white;
+  border-width: 0px;
+  border-right-width: 0px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+#close-options:hover {
+	background-color: var(--blue-light);
 }
 
 #open-options {
@@ -51,4 +119,16 @@
   width: 36px;
   height: 36px;
   margin: 7px;
+}
+
+.swap-icon {
+	width: 36px;
+	height: 36px;
+	margin: 7px;
+}
+
+.delete-icon {
+	width: 36px;
+	height: 36px;
+	margin: 7px;
 }
