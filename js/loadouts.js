@@ -117,58 +117,14 @@ function selectLoadout(loadoutNumber) {
 
 }
 
+function highlightButton(shortcutCode) {
+  var button = getButtonFromShortcutCode(shortcutCode);
 
-
-// Highlights a loadout button when the corresponding keyboard number is pressed
-function highlightButton(loadoutNumber, color) {
-  var hex = COLORS[color];
-
-  if (loadoutNumber === 10) {
-      if (CURRENT_TAB_IS_SELECT) {
-        document.getElementById("open-options-button").style.backgroundColor = hex;
-      } else {
-        document.getElementById("close-options-button").style.backgroundColor = hex;
-      }
-  } else {
-    var loadoutButton;
-    if (CURRENT_TAB_IS_SELECT) {
-      loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
-    } else {
-      loadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
-    }
-    if (loadoutButton.getAttribute("disabled")) return;
-    loadoutButton.style.backgroundColor = hex;
-  }
+  if (button.getAttribute("disabled") && !button.classList.contains("select-loadout-button")) return;
+  button.classList.add("highlighted");
 }
 
-// Returns the number 0-9 if a number is pressed above the keyboard, or in the numpad
-// Returns 10 if a dash was pressed, as a shortcut for options
-// Returns -1 for any other key
-function getLoadoutNumberFromKeyPress(e) {
-
-  if (e.which >= CHARCODE_MIN_NUMBER && e.which <= CHARCODE_MAX_NUMBER) {
-    // Key pressed was 0-9
-    return e.which - CHARCODE_MIN_NUMBER;
-  } else if (e.which >= CHARCODE_MIN_NUMPAD && e.which <= CHARCODE_MAX_NUMPAD) {
-    // Key pressed was 0-9 on the numpad
-    return e.which - CHARCODE_MIN_NUMPAD;
-  } else if (e.which === CHARCODE_HYPHEN) {
-    // Key pressed was '-', which is a shortcut for options
-    return 10;
-  } else if (e.which === CHARCODE_QUESTION) {
-    // Key pressed was '?', which is a shortcut for info
-    return 11;
-  } else if (e.which === CHARCODE_A) {
-    // Key pressed was 'a', which is a shortcut for add/overwrite loadout
-    return 12;
-  } else if (e.which === CHARCODE_S) {
-    // Key pressed was 's', which is a shortcut for swap loadouts
-    return 13;
-  } else if (e.which === CHARCODE_D) {
-    // Key pressed was 'd', which is a shortcut for delete loadout
-    return 14;
-  } else {
-    // Some other key was pressed
-    return -1;
-  }
+function unhighlightButton(shortcutCode) {
+  var button = getButtonFromShortcutCode(shortcutCode);
+  button.classList.remove("highlighted");
 }

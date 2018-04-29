@@ -89,7 +89,7 @@ button {
 	background-color: var(--blue);
 }
 
-.open-loadout-button:hover, .select-loadout-button:hover, #open-options-button:hover, #close-options-button:hover, #info-button:hover {
+.open-loadout-button:hover, .select-loadout-button:hover, #open-options-button:hover, #close-options-button:hover, #info-button:hover, .open-loadout-button.highlighted, .select-loadout-button.highlighted, #open-options-button.highlighted, #close-options-button.highlighted, #info-button.highlighted {
 	  background-color: var(--blue-light);
 }
 
@@ -98,7 +98,7 @@ button {
   cursor: default;
 }
 
-.select-loadout-button[disabled]:hover {
+.select-loadout-button[disabled]:hover, .select-loadout-button[disabled].highlighted {
 	background-color: var(--gray-light);
 }
 
@@ -114,7 +114,7 @@ button {
 	background-color: var(--green);
 }
 
-#edit-button:hover {
+#edit-button:hover, #edit-button.highlighted {
 	background-color: var(--green-light);
 }
 
@@ -122,7 +122,7 @@ button {
 	background-color: var(--yellow);
 }
 
-#swap-button:hover {
+#swap-button:hover, #swap-button.highlighted {
 	background-color: var(--yellow-light);
 }
 
@@ -134,7 +134,7 @@ button {
 	background-color: var(--red);
 }
 
-#delete-button:hover {
+#delete-button:hover, #delete-button.highlighted {
 	background-color: var(--red-light);
 }
 
