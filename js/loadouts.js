@@ -145,6 +145,18 @@ function getLoadoutNumberFromKeyPress(e) {
   } else if (e.which === CHARCODE_HYPHEN) {
     // Key pressed was '-', which is a shortcut for options
     return 10;
+  } else if (e.which === CHARCODE_QUESTION) {
+    // Key pressed was '?', which is a shortcut for info
+    return 11;
+  } else if (e.which === CHARCODE_A) {
+    // Key pressed was 'a', which is a shortcut for add/overwrite loadout
+    return 12;
+  } else if (e.which === CHARCODE_S) {
+    // Key pressed was 's', which is a shortcut for swap loadouts
+    return 13;
+  } else if (e.which === CHARCODE_D) {
+    // Key pressed was 'd', which is a shortcut for delete loadout
+    return 14;
   } else {
     // Some other key was pressed
     return -1;
@@ -170,7 +182,25 @@ document.addEventListener("keyup", function(e) {
   if (HOME) {
     (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
   } else {
-    (loadoutNumber === 10) ? closeEditTab() : selectLoadout(loadoutNumber)
+    switch(loadoutNumber) {
+      case 10:
+        closeEditTab();
+        break;
+      case 11:
+        openInfo();
+        break;
+      case 12:
+        saveLoadout(SELECTED_LOADOUT);
+        break;
+      case 13:
+
+        break;
+      case 14:
+        deleteLoadout(SELECTED_LOADOUT);
+        break;
+      default:
+        selectLoadout(loadoutNumber);
+    }
   }
 
 });

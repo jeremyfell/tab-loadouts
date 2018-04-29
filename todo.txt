@@ -1,18 +1,11 @@
 Change buttons from div to button elements, to allow tabbing and entering to press buttons
-Make edit buttons show proper add or edit icon depending on if the loadout exists already
 
-
-
-
+Add highlighting for all buttons
+Fix highlighting to turn off
 
 Add swap functionality, so that clicking a swap button selects it, and clicking another swap button will swap the two loadouts
 Clicking a swap button, then clicking the same one, will deselect the swap button
 Clicking a swap button, and then clicking any other button, will deselect the swap button
 
-Add delete functionality, so that clicking a delete button will remove the loadout from local storage
-Clicking a delete button will update the buttons so that the loadout is disabled, the edit button is changed to an add button, and the delete button is disabled
 
-
-Add shift+number shortcuts for swapping loadouts
-Add ctrl+number shortcuts for adding/editing loadouts
-Add delete+number shortcuts for deleting loadouts
+Add info button functionality that shows a popup to explain how to use the chrome extension

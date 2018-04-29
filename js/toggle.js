@@ -48,3 +48,8 @@ function setEditToOverwrite() {
   document.getElementById("edit-button").title = "Overwrite loadout in the selected slot with current tabs";
   document.getElementById("edit-icon").setAttribute("src", "../svg/edit.svg");
 }
+
+
+function unselectLoadout() {
+  document.getElementsByClassName("selected-loadout")[0].classList.remove("selected-loadout");
+}

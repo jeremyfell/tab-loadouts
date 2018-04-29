@@ -4,13 +4,9 @@ function getLoadoutsFromLocalStorage() {
 
       LOADOUTS = [null, null, null, null, null, null, null, null, null, null];
 
-      var i = 0;
       for (var key in storage) {
-        LOADOUTS[(parseInt(key) + 9) % 10] = storage[key];
-        i++;
+        LOADOUTS[loadoutNumberToIndex(key)] = storage[key];
       }
-
-      if (i === 10) UNUSED_LOADOUT = false;
 
       configureLoadoutButtons();
   });
@@ -21,10 +17,16 @@ function saveLoadoutToLocalStorage(number) {
   var loadout = {};
   var newTabLoadout = {};
   var name = document.getElementById("loadout-name-input").value;
+  document.getElementById("loadout-name-input").value = "";
 
   if (name === "") name = String(number);
   loadout.name = name;
+  document.getElementById("open-loadout-" + String(number)).title = name;
+  document.getElementById("select-loadout-" + String(number)).title = name;
   loadout.links = [];
+
+  // Sets to true for special case of detecting whether all slots are used (since chrome.tabs adds a delay)
+  LOADOUTS[loadoutNumberToIndex(number)] = true;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
     for (var i = 0; i < tabs.length; i++) {
@@ -32,6 +34,7 @@ function saveLoadoutToLocalStorage(number) {
       loadout.links.push(tab.url);
     }
 
+    LOADOUTS[loadoutNumberToIndex(number)] = loadout;
     newTabLoadout[String(number)] = loadout;
     chrome.storage.local.set(newTabLoadout);
   });
@@ -39,5 +42,6 @@ function saveLoadoutToLocalStorage(number) {
 }
 
 function removeLoadoutFromLocalStorage(number) {
+  LOADOUTS[loadoutNumberToIndex(number)] = null;
   chrome.storage.local.remove(String(number));
 }
