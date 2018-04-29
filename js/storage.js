@@ -5,20 +5,33 @@ function getLoadoutsFromLocalStorage() {
       LOADOUTS = [null, null, null, null, null, null, null, null, null, null];
 
       for (var key in storage) {
-        LOADOUTS[(key + 9) % 10] = storage[key];
+        LOADOUTS[(parseInt(key) + 9) % 10] = storage[key];
       }
 
       configureLoadoutButtons();
-      configureEditButtons();
   });
 }
 
-// Loadout consists of a name and the links
-function saveLoadoutToLocalStorage(number, loadout) {
+// Saves all tabs in the current window into a new loadout
+function saveLoadoutToLocalStorage(number) {
+  var loadout = {};
   var newTabLoadout = {};
-  newTabLoadout[String(number)] = loadout;
+  var name = document.getElementById("loadout-name").value;
 
-  chrome.storage.local.set(newTabLoadout);
+  if (name === "") name = String(number);
+  loadout.name = name;
+  loadout.links = [];
+
+  chrome.tabs.getAllInWindow(null, function(tabs) {
+    for (var i = 0; i < tabs.length; i++) {
+      tab = tabs[i];
+      loadout.links.push(tab.url);
+    }
+
+    newTabLoadout[String(number)] = loadout;
+    chrome.storage.local.set(newTabLoadout);
+  });
+
 }
 
 function removeLoadoutFromLocalStorage(number) {

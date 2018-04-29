@@ -1,11 +1,12 @@
 function openLoadout(loadoutNumber) {
-  if (document.getElementById("open-loadout-" + String(loadoutNumber)).getAttribute("disabled")) return;
+  var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
+  if (loadoutButton.getAttribute("disabled")) return;
 
-  var currentLoadoutLinks = LOADOUTS[(loadoutNumber + 9) % 10].links;
+  var currentLoadoutLinks = LOADOUTS[String(loadoutButton.dataset.index)].links;
   if (currentLoadoutLinks.length === 0) return;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
-    var tabIds = []
+    var tabIds = [];
 
     // Removes all tabs in the current window except for the first tab
     if (tabs.length > 1) {
@@ -24,32 +25,65 @@ function openLoadout(loadoutNumber) {
       chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
     }
 
+    // Closes the extension popup
     window.close();
   });
 
 }
 
 function configureLoadoutButtons() {
-  loadoutButtons = document.getElementsByClassName("loadout-button");
+  openLoadoutButtons = document.getElementsByClassName("open-loadout-button");
+  selectLoadoutButtons = document.getElementsByClassName("select-loadout-button");
+
   for (var i = 0; i < 10; i++) {
-    // Disables unused loadout buttons
-    if (!LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
+    if (LOADOUTS[i]) {
+      // Sets title to the corresponding loadout name
+      openLoadoutButtons[i].title = LOADOUTS[i].name;
+      selectLoadoutButtons[i].title = LOADOUTS[i].name;
+    } else {
+      // Disables unused loadout buttons
+      openLoadoutButtons[i].setAttribute("disabled", "true");
+      selectLoadoutButtons[i].setAttribute("disabled", "true");
+    }
 
     // Adds click event to open the corresponding loadout
-    loadoutButtons[i].addEventListener("click", function() {
-      openLoadout(parseInt(this.id[this.id.length - 1]));
+    openLoadoutButtons[i].addEventListener("click", function() {
+      openLoadout(parseInt(this.id.slice(-1)));
     });
 
-    // Sets title to the corresponding loadout name
-    if (LOADOUTS[i]) loadoutButtons[i].title = LOADOUTS[i].name;
+    selectLoadoutButtons[i].addEventListener("click", function() {
+      console.log("test");
+    });
 
   }
 }
 
+function configureSelectButton(selectButton) {
+  if (selectButton.disabled) {
+
+    selectButton.addEventListener("click", function() {
+      
+    });
+
+  } else {
+
+    selectButton.addEventListener("click", function() {
+
+    });
+
+  }
+
+}
+
+
+
+
+
+
 // Highlights a loadout button when the corresponding keyboard number is pressed
 function highlightButton(loadoutNumber) {
   if (loadoutNumber === 10) {
-      document.getElementById("open-options").style.backgroundColor = "#75A4F4";
+      document.getElementById("open-options-button").style.backgroundColor = "#75A4F4";
   } else {
     var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
     if (loadoutButton.getAttribute("disabled")) return;
@@ -61,6 +95,7 @@ function highlightButton(loadoutNumber) {
 // Returns 10 if a dash was pressed, as a shortcut for options
 // Returns -1 for any other key
 function getLoadoutNumberFromKeyPress(e) {
+
   if (e.which >= 48 && e.which <= 57) {
     // Key pressed was 0-9
     return e.which - 48;
@@ -94,29 +129,3 @@ document.addEventListener("keyup", function(e) {
   (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
 
 });
-
-
-function configureEditButtons() {
-  editButtons = document.getElementsByClassName("edit-button");
-  for (var i = 0; i < 10; i++) {
-
-    if (LOADOUTS[i]) {
-      editButtons[i].title = "Overwrite";
-      editButtons[i].classList.remove("add-button");
-      editButtons[i].classList.add("edit-button");
-    } else {
-      editButtons[i].title = "Add";
-    }
-
-
-    // Disables unused loadout buttons
-    if (!LOADOUTS[i]) loadoutButtons[i].setAttribute("disabled", "true");
-
-    // Adds click event to open the corresponding loadout
-    loadoutButtons[i].addEventListener("click", function() {
-      openLoadout(parseInt(this.id[this.id.length - 1]));
-    });
-
-
-  }
-}

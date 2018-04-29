@@ -1,9 +1,24 @@
-getLoadoutsFromLocalStorage();
+function openEditTab() {
+  document.body.className = "edit-body";
+  document.getElementById("select-tab").classList.add("invisible");
+  document.getElementById("edit-tab").classList.remove("invisible");
+  HOME = false;
 
-document.getElementById("open-options").addEventListener("click", function() {
+}
+
+function closeEditTab() {
+  document.body.className = "select-body";
+  document.getElementById("select-tab").classList.remove("invisible");
+  document.getElementById("edit-tab").classList.add("invisible");
+  HOME = true;
+}
+
+document.getElementById("open-options-button").addEventListener("click", function() {
   openEditTab();
 });
 
-document.getElementById("close-options").addEventListener("click", function() {
+document.getElementById("close-options-button").addEventListener("click", function() {
   closeEditTab();
 })
+
+getLoadoutsFromLocalStorage();

@@ -1,5 +1,4 @@
 Change buttons from div to button elements, to allow tabbing and entering to press buttons
-Change icon for close edit tab button to an x icon
 Add - shortcut for close edit tab button
 Fix popup height not shrinking after closing edit tab
 Finish CSS for loadout name input
