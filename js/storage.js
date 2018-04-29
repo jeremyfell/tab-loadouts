@@ -4,9 +4,13 @@ function getLoadoutsFromLocalStorage() {
 
       LOADOUTS = [null, null, null, null, null, null, null, null, null, null];
 
+      var i = 0;
       for (var key in storage) {
         LOADOUTS[(parseInt(key) + 9) % 10] = storage[key];
+        i++;
       }
+
+      if (i === 10) UNUSED_LOADOUT = false;
 
       configureLoadoutButtons();
   });
@@ -16,7 +20,7 @@ function getLoadoutsFromLocalStorage() {
 function saveLoadoutToLocalStorage(number) {
   var loadout = {};
   var newTabLoadout = {};
-  var name = document.getElementById("loadout-name").value;
+  var name = document.getElementById("loadout-name-input").value;
 
   if (name === "") name = String(number);
   loadout.name = name;

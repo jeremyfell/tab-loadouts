@@ -4,21 +4,32 @@
 	--gray-light: #EEEEEE;
 	--gray-dark: #9A9A9A;
 	--green: #27ae60;
-
+	--green-light: #2ecc71;
 	--blue: #4386FA;
 	--blue-light: #75A4F4;
 	--blue-dark: #2B74F2;
 	--blue-highlight: #E0EAF9;
-	--red: #e74c3c;
-	--red-light: #EEEEEE;
-	--yellow: #F4C12A;
-	--yellow-light: #F5D63C;
+	--red: #EA4C3F;
+	--red-light: #F56557;
+	--yellow: #EAB928;
+	--yellow-light: #EBCE3A;
 	--yellow-dark: #EC9325;
 
 }
 
 html {
 	-webkit-user-select: none;
+	-webkit-user-drag: none;
+}
+
+body {
+	margin: 0;
+	-webkit-user-drag: none;
+}
+
+::-webkit-input-placeholder {
+    color: var(--gray);
+    opacity: 0.5;
 }
 
 .select-body {
@@ -79,9 +90,21 @@ html {
 	  background-color: var(--blue-light);
 }
 
-.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button[disabled], .select-loadout-button[disabled]:hover, #edit-button[disabled],  #edit-button[disabled]:hover, #swap-button[disabled], #swap-button[disabled]:hover, #delete-button[disabled], #delete-button[disabled]:hover {
+.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button[disabled], #edit-button[disabled],  #edit-button[disabled]:hover, #swap-button[disabled], #swap-button[disabled]:hover, #delete-button[disabled], #delete-button[disabled]:hover {
   background-color: var(--gray);
   cursor: default;
+}
+
+.select-loadout-button[disabled]:hover {
+	background-color: var(--gray-light);
+}
+
+.selected-loadout, .selected-loadout:hover {
+	background-color: var(--blue-dark);
+}
+
+.selected-loadout[disabled], .selected-loadout[disabled]:hover {
+	background-color: var(--gray-dark);
 }
 
 #edit-button {
@@ -164,9 +187,14 @@ html {
 	margin: 7px;
 }
 
-#loadout-name {
+#loadout-name-input {
 	width: 510px;
 	height: 50px;
+	font-family: Helvetica;
+	font-size: 26px;
 	border-style: solid;
 	border-color: var(--gray);
+	border-width: 2px;
+	padding-left: 10px;
+	outline: 0;
 }

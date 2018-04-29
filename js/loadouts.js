@@ -52,24 +52,51 @@ function configureLoadoutButtons() {
     });
 
     selectLoadoutButtons[i].addEventListener("click", function() {
-      console.log("test");
+      selectLoadout(parseInt(this.id.slice(-1)));
     });
 
   }
 }
 
 function configureSelectButton(selectButton) {
-  if (selectButton.disabled) {
 
-    selectButton.addEventListener("click", function() {
-      
-    });
+  selectButton.addEventListener("click", function() {
+
+    if (this.getAttribute("disabled")) {
+
+    } else {
+
+    }
+
+  });
+
+}
+
+
+function selectLoadout(loadoutNumber) {
+  var selectLoadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
+  if (loadoutNumber === SELECTED_LOADOUT) {
+    SELECTED_LOADOUT = -1;
+    selectLoadoutButton.classList.remove("selected-loadout");
+    disableDeleteButton();
+    disableSwapButton();
 
   } else {
 
-    selectButton.addEventListener("click", function() {
+    if (SELECTED_LOADOUT !== -1) {
+      document.getElementById("select-loadout-" + String(SELECTED_LOADOUT)).classList.remove("selected-loadout");
+    }
 
-    });
+    SELECTED_LOADOUT = loadoutNumber;
+    selectLoadoutButton.classList.add("selected-loadout");
+
+    if (selectLoadoutButton.getAttribute("disabled")) {
+      disableDeleteButton();
+      disableSwapButton();
+    } else {
+      enableDeleteButton();
+      enableSwapButton();
+    }
 
   }
 
@@ -77,17 +104,25 @@ function configureSelectButton(selectButton) {
 
 
 
-
-
-
 // Highlights a loadout button when the corresponding keyboard number is pressed
-function highlightButton(loadoutNumber) {
+function highlightButton(loadoutNumber, color) {
+  var hex = COLORS[color];
+
   if (loadoutNumber === 10) {
-      document.getElementById("open-options-button").style.backgroundColor = "#75A4F4";
+      if (HOME) {
+        document.getElementById("open-options-button").style.backgroundColor = hex;
+      } else {
+        document.getElementById("close-options-button").style.backgroundColor = hex;
+      }
   } else {
-    var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
+    var loadoutButton;
+    if (HOME) {
+      loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
+    } else {
+      loadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
+    }
     if (loadoutButton.getAttribute("disabled")) return;
-    loadoutButton.style.backgroundColor = "#75A4F4";
+    loadoutButton.style.backgroundColor = hex;
   }
 }
 
@@ -96,13 +131,13 @@ function highlightButton(loadoutNumber) {
 // Returns -1 for any other key
 function getLoadoutNumberFromKeyPress(e) {
 
-  if (e.which >= 48 && e.which <= 57) {
+  if (e.which >= CHARCODE_MIN_NUMBER && e.which <= CHARCODE_MAX_NUMBER) {
     // Key pressed was 0-9
-    return e.which - 48;
-  } else if (e.which >= 96 && e.which <= 105) {
+    return e.which - CHARCODE_MIN_NUMBER;
+  } else if (e.which >= CHARCODE_MIN_NUMPAD && e.which <= CHARCODE_MAX_NUMPAD) {
     // Key pressed was 0-9 on the numpad
-    return e.which - 96
-  } else if (e.which === 189) {
+    return e.which - CHARCODE_MIN_NUMPAD;
+  } else if (e.which === CHARCODE_HYPHEN) {
     // Key pressed was '-', which is a shortcut for options
     return 10;
   } else {
@@ -116,7 +151,7 @@ document.addEventListener("keydown", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  highlightButton(loadoutNumber);
+  highlightButton(loadoutNumber, "blue");
 
 });
 
@@ -126,6 +161,11 @@ document.addEventListener("keyup", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
+
+  if (HOME) {
+    (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
+  } else {
+    (loadoutNumber === 10) ? closeEditTab() : selectLoadout(loadoutNumber)
+  }
 
 });

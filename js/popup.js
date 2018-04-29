@@ -19,6 +19,22 @@ document.getElementById("open-options-button").addEventListener("click", functio
 
 document.getElementById("close-options-button").addEventListener("click", function() {
   closeEditTab();
-})
+});
+
+document.getElementById("edit-button").addEventListener("click", function() {
+  if (UNUSED_LOADOUT) {
+
+  } else {
+
+  }
+});
+
+document.getElementById("swap-button").addEventListener("click", function() {
+
+});
+
+document.getElementById("delete-button").addEventListener("click", function() {
+  deleteLoadout(SELECTED_LOADOUT);
+});
 
 getLoadoutsFromLocalStorage();
