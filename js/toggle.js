@@ -14,6 +14,10 @@ function enableSelectLoadoutButton(loadoutNumber) {
   document.getElementById("select-loadout-" + String(loadoutNumber)).removeAttribute("disabled");
 }
 
+function unselectLoadout() {
+  document.getElementById("select-loadout-" + String(SELECTED_LOADOUT)).classList.remove("selected-loadout");
+}
+
 function disableEditButton() {
   document.getElementById("edit-button").setAttribute("disabled", "true");
 }
@@ -30,6 +34,13 @@ function enableSwapButton() {
   document.getElementById("swap-button").removeAttribute("disabled");
 }
 
+function selectSwapButton() {
+  document.getElementById("swap-button").classList.add("selected-swap");
+}
+
+function unselectSwapButton() {
+  document.getElementById("swap-button").classList.remove("selected-swap");
+}
 
 function disableDeleteButton() {
   document.getElementById("delete-button").setAttribute("disabled", "true");
@@ -49,7 +60,10 @@ function setEditToOverwrite() {
   document.getElementById("edit-icon").setAttribute("src", "../svg/edit.svg");
 }
 
+function setOpenLoadoutButtonTitle(loadoutNumber, title) {
+  document.getElementById("open-loadout-" + String(loadoutNumber)).title = title;
+}
 
-function unselectLoadout() {
-  document.getElementsByClassName("selected-loadout")[0].classList.remove("selected-loadout");
+function setSelectLoadoutButtonTitle(loadoutNumber, title) {
+  document.getElementById("select-loadout-" + String(loadoutNumber)).title = title;
 }

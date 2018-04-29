@@ -1,4 +1,5 @@
 Change buttons from div to button elements, to allow tabbing and entering to press buttons
+Rename global variables
 
 Add highlighting for all buttons
 Fix highlighting to turn off

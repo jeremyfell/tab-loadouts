@@ -28,6 +28,12 @@ body {
 	-webkit-user-drag: none;
 }
 
+button {
+	outline: 0;
+	padding: 0;
+	border-style: none;
+}
+
 ::-webkit-input-placeholder {
     color: var(--gray);
     opacity: 0.5;
@@ -59,6 +65,7 @@ body {
   height: 50px;
   float: left;
   color: white;
+	font-family: Helvetica;
   font-size: 30px;
   text-align: center;
   line-height: 50px;
@@ -119,6 +126,10 @@ body {
 	background-color: var(--yellow-light);
 }
 
+#swap-button.selected-swap, #swap-button.selected-swap:hover {
+	background-color: var(--yellow-dark);
+}
+
 #delete-button {
 	background-color: var(--red);
 }
@@ -137,9 +148,9 @@ body {
 
 
 #options-icon {
-  width: 36px;
-  height: 36px;
-  margin: 7px;
+  width: 32px;
+  height: 32px;
+  margin: 9px;
 }
 
 #edit-icon {

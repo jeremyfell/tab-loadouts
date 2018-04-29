@@ -76,32 +76,42 @@ function configureSelectButton(selectButton) {
 function selectLoadout(loadoutNumber) {
   var selectLoadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
   if (loadoutNumber === SELECTED_LOADOUT) {
+
     SELECTED_LOADOUT = -1;
     selectLoadoutButton.classList.remove("selected-loadout");
     disableDeleteButton();
     disableSwapButton();
+    unselectSwapButton();
+    SWAP = false;
     disableEditButton();
     (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd() ;
 
   } else {
 
     if (SELECTED_LOADOUT !== -1) {
-      document.getElementById("select-loadout-" + String(SELECTED_LOADOUT)).classList.remove("selected-loadout");
+      unselectLoadout();
     }
 
-    SELECTED_LOADOUT = loadoutNumber;
-    selectLoadoutButton.classList.add("selected-loadout");
+    if (SWAP) {
+      swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
 
-    if (selectLoadoutButton.getAttribute("disabled")) {
-      disableDeleteButton();
-      disableSwapButton();
-      setEditToAdd();
     } else {
-      enableDeleteButton();
-      enableSwapButton();
-      setEditToOverwrite();
+      SELECTED_LOADOUT = loadoutNumber;
+      selectLoadoutButton.classList.add("selected-loadout");
+
+      if (selectLoadoutButton.getAttribute("disabled")) {
+        disableDeleteButton();
+        disableSwapButton();
+        setEditToAdd();
+      } else {
+        enableDeleteButton();
+        enableSwapButton();
+        setEditToOverwrite();
+      }
+      enableEditButton();
     }
-    enableEditButton();
+
+
 
   }
 
@@ -168,7 +178,7 @@ document.addEventListener("keydown", function(e) {
 
   loadoutNumber = getLoadoutNumberFromKeyPress(e);
   if (loadoutNumber === -1) return;
-  highlightButton(loadoutNumber, "blue");
+  // highlightButton(loadoutNumber, "blue");
 
 });
 
@@ -180,6 +190,7 @@ document.addEventListener("keyup", function(e) {
   if (loadoutNumber === -1) return;
 
   if (HOME) {
+    if (loadoutNumber > 10) return;
     (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
   } else {
     switch(loadoutNumber) {

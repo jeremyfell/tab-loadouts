@@ -21,8 +21,8 @@ function saveLoadoutToLocalStorage(number) {
 
   if (name === "") name = String(number);
   loadout.name = name;
-  document.getElementById("open-loadout-" + String(number)).title = name;
-  document.getElementById("select-loadout-" + String(number)).title = name;
+  setOpenLoadoutButtonTitle(number, name);
+  setSelectLoadoutButtonTitle(number, name);
   loadout.links = [];
 
   // Sets to true for special case of detecting whether all slots are used (since chrome.tabs adds a delay)

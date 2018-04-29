@@ -22,18 +22,21 @@ document.getElementById("close-options-button").addEventListener("click", functi
 });
 
 document.getElementById("edit-button").addEventListener("click", function() {
-
   saveLoadout(SELECTED_LOADOUT);
-
 });
 
 document.getElementById("swap-button").addEventListener("click", function() {
-
+  SWAP = true;
+  selectSwapButton();
 });
 
 document.getElementById("delete-button").addEventListener("click", function() {
   deleteLoadout(SELECTED_LOADOUT);
 });
+
+document.getElementById("loadout-name-input").addEventListener("keydown", function(e) {
+  // if (e.which === 9) this.blur();
+})
 
 
 getLoadoutsFromLocalStorage();
