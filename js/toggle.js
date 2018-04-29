@@ -15,6 +15,7 @@ function enableSelectLoadoutButton(loadoutNumber) {
 }
 
 function unselectLoadout() {
+  if (SELECTED_LOADOUT === -1) return;
   document.getElementById("select-loadout-" + String(SELECTED_LOADOUT)).classList.remove("selected-loadout");
 }
 

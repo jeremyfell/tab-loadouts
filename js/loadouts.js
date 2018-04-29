@@ -124,14 +124,14 @@ function highlightButton(loadoutNumber, color) {
   var hex = COLORS[color];
 
   if (loadoutNumber === 10) {
-      if (HOME) {
+      if (CURRENT_TAB_IS_SELECT) {
         document.getElementById("open-options-button").style.backgroundColor = hex;
       } else {
         document.getElementById("close-options-button").style.backgroundColor = hex;
       }
   } else {
     var loadoutButton;
-    if (HOME) {
+    if (CURRENT_TAB_IS_SELECT) {
       loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
     } else {
       loadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
@@ -172,46 +172,3 @@ function getLoadoutNumberFromKeyPress(e) {
     return -1;
   }
 }
-
-// On key down, if a number is pressed, highlight its corresponding button
-document.addEventListener("keydown", function(e) {
-
-  loadoutNumber = getLoadoutNumberFromKeyPress(e);
-  if (loadoutNumber === -1) return;
-  // highlightButton(loadoutNumber, "blue");
-
-});
-
-// On key up, if a number is pressed, open the corresponding tab loadout
-// On key up, if a dash is pressed, open options
-document.addEventListener("keyup", function(e) {
-
-  loadoutNumber = getLoadoutNumberFromKeyPress(e);
-  if (loadoutNumber === -1) return;
-
-  if (HOME) {
-    if (loadoutNumber > 10) return;
-    (loadoutNumber === 10) ? openEditTab() : openLoadout(loadoutNumber);
-  } else {
-    switch(loadoutNumber) {
-      case 10:
-        closeEditTab();
-        break;
-      case 11:
-        openInfo();
-        break;
-      case 12:
-        saveLoadout(SELECTED_LOADOUT);
-        break;
-      case 13:
-
-        break;
-      case 14:
-        deleteLoadout(SELECTED_LOADOUT);
-        break;
-      default:
-        selectLoadout(loadoutNumber);
-    }
-  }
-
-});

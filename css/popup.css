@@ -146,6 +146,9 @@ button {
   border-right-width: 0px;
 }
 
+/********************
+Icons
+********************/
 
 #options-icon {
   width: 32px;
@@ -182,6 +185,10 @@ button {
 	height: 28px;
 	margin: 11px;
 }
+
+/********************
+Input
+********************/
 
 #loadout-name-input {
 	width: 510px;

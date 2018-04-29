@@ -19,7 +19,6 @@ function saveLoadoutToLocalStorage(number) {
   var name = document.getElementById("loadout-name-input").value;
   document.getElementById("loadout-name-input").value = "";
 
-  if (name === "") name = String(number);
   loadout.name = name;
   setOpenLoadoutButtonTitle(number, name);
   setSelectLoadoutButtonTitle(number, name);
