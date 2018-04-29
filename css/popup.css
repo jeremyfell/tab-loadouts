@@ -3,8 +3,8 @@
 	--gray: #A9A9A9;
 	--gray-light: #EEEEEE;
 	--gray-dark: #9A9A9A;
-	--green: #27ae60;
-	--green-light: #2ecc71;
+	--green: #1E9E5A;
+	--green-light: #38AC6D;
 	--blue: #4386FA;
 	--blue-light: #75A4F4;
 	--blue-dark: #2B74F2;
@@ -12,7 +12,7 @@
 	--red: #EA4C3F;
 	--red-light: #F56557;
 	--yellow: #EAB928;
-	--yellow-light: #EBCE3A;
+	--yellow-light: #FFDF3E;
 	--yellow-dark: #EC9325;
 
 }
@@ -20,6 +20,7 @@
 html {
 	-webkit-user-select: none;
 	-webkit-user-drag: none;
+	height: 0;
 }
 
 body {
@@ -48,18 +49,8 @@ body {
 	margin: 0;
 }
 
-#select-tab {
-	max-height: 50px;
-
-}
-
 .invisible {
 	display: none;
-}
-
-
-#edit-tab {
-
 }
 
 .button {
@@ -79,14 +70,19 @@ body {
 }
 
 .option-button {
-	width: 169px;
+	width: 186px;
 }
 
-.open-loadout-button, .select-loadout-button, #open-options-button {
+#delete-button {
+	border-right-width: 0;
+}
+
+
+.open-loadout-button, .select-loadout-button, #open-options-button, #close-options-button, #info-button {
 	background-color: var(--blue);
 }
 
-.open-loadout-button:hover, .select-loadout-button:hover, #open-options-button:hover {
+.open-loadout-button:hover, .select-loadout-button:hover, #open-options-button:hover, #close-options-button:hover, #info-button:hover {
 	  background-color: var(--blue-light);
 }
 
@@ -131,31 +127,14 @@ body {
 	background-color: var(--red-light);
 }
 
-#close-options-button {
-	display: block;
-	width: 50px;
-	height: 100px;
-	padding-top: 50px;
-  background-color: var(--blue);
+#close-options-button, #info-button {
   float: right;
-  color: white;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-  border-color: white;
-  border-width: 0px;
-  border-right-width: 0px;
-  border-style: solid;
-  cursor: pointer;
 }
 
-#close-options-button:hover {
-	background-color: var(--blue-light);
-}
-
-#open-options-button {
+#open-options-button, #close-options-button, #info-button {
   border-right-width: 0px;
 }
+
 
 #options-icon {
   width: 36px;
@@ -182,9 +161,15 @@ body {
 }
 
 #close-icon {
-	width: 36px;
-	height: 36px;
-	margin: 7px;
+	width: 32px;
+	height: 32px;
+	margin: 9px;
+}
+
+#info-icon {
+	width: 28px;
+	height: 28px;
+	margin: 11px;
 }
 
 #loadout-name-input {

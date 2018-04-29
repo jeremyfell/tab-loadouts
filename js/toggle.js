@@ -1,22 +1,3 @@
-function deleteLoadout(loadoutNumber) {
-  removeLoadoutFromLocalStorage(loadoutNumber);
-  disableOpenLoadoutButton(loadoutNumber);
-  disableSelectLoadoutButton(loadoutNumber);
-  disableDeleteButton();
-  disableSwapButton();
-}
-
-function saveLoadout(loadoutNumber) {
-  saveLoadoutToLocalStorage(loadoutNumber);
-  enableOpenLoadoutButton(loadoutNumber);
-  enableSelectLoadoutButton(loadoutNumber);
-  document.getElementsByClassName("selected-loadout")[0].classList.remove("selected-loadout");
-  disableEditButton();
-  disableDeleteButton();
-  disableSwapButton();
-}
-
-
 function disableOpenLoadoutButton(loadoutNumber) {
     document.getElementById("open-loadout-" + String(loadoutNumber)).setAttribute("disabled", "true");
 }

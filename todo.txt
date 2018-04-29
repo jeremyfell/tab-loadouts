@@ -1,11 +1,4 @@
 Change buttons from div to button elements, to allow tabbing and entering to press buttons
-Add - shortcut for close edit tab button
-Fix popup height not shrinking after closing edit tab
-Finish CSS for loadout name input
-Disable selecting text and dragging icons
-Add light green and light red css colors
-
-
 Make edit buttons show proper add or edit icon depending on if the loadout exists already
 
 

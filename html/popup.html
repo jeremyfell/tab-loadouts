@@ -37,17 +37,27 @@
       <div id="select-loadout-0" class="select-loadout-button button" data-index="9">0</div>
 
 
-      <div id="close-options-button" title="Close options">
+      <div id="close-options-button" class="button" title="Close options">
         <img id="close-icon" src="../svg/close.svg"></img>
       </div>
 
-      <div id="edit-button" disabled class="option-button button" title="Save current tabs as loadout to selected slot"><img id="edit-icon" src="../svg/save.svg"></img></div>
+      <div id="edit-button" disabled class="option-button button" title="Save current tabs as new loadout in the selected slot">
+        <img id="edit-icon" src="../svg/save.svg"></img>
+      </div>
 
-      <div id="swap-button" disabled class="option-button button" title="Swap loadout positions"><img id="swap-icon" src="../svg/swap.svg"></img></div>
+      <div id="swap-button" disabled class="option-button button" title="Swap loadout positions">
+        <img id="swap-icon" src="../svg/swap.svg"></img>
+      </div>
 
-      <div id="delete-button" disabled class="option-button button" title="Delete loadout"><img id="delete-icon" src="../svg/delete.svg"></img></div>
+      <div id="delete-button" disabled class="option-button button" title="Delete loadout">
+        <img id="delete-icon" src="../svg/delete.svg"></img>
+      </div>
 
       <input id="loadout-name-input" spellcheck="false" placeholder="Loadout name (optional)"></input>
+
+      <div id="info-button" class="button" title="Info">
+        <img id="info-icon" src="../svg/info.svg"></img>
+      </div>
 
     </div>
 
@@ -59,4 +69,6 @@
   <script src="../js/loadouts.js"></script>
   <script src="../js/popup.js"></script>
   <script src="../js/edit.js"></script>
+  <script src="../js/toggle.js"></script>
+  <script src="../js/helpers.js"></script>
 </html>

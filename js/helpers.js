@@ -4,3 +4,12 @@ function trimElement(element) {
     element.removeChild(element.lastChild);
   }
 }
+
+function allSlotsInUse() {
+  for (var i = 0; i < 10; i++) {
+    if (!LOADOUTS[i]) {
+      return false;
+    }
+  }
+  return true;
+}

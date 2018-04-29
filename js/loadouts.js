@@ -80,6 +80,8 @@ function selectLoadout(loadoutNumber) {
     selectLoadoutButton.classList.remove("selected-loadout");
     disableDeleteButton();
     disableSwapButton();
+    disableEditButton();
+    (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd() ;
 
   } else {
 
@@ -93,10 +95,13 @@ function selectLoadout(loadoutNumber) {
     if (selectLoadoutButton.getAttribute("disabled")) {
       disableDeleteButton();
       disableSwapButton();
+      setEditToAdd();
     } else {
       enableDeleteButton();
       enableSwapButton();
+      setEditToOverwrite();
     }
+    enableEditButton();
 
   }
 

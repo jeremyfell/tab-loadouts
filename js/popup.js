@@ -22,11 +22,9 @@ document.getElementById("close-options-button").addEventListener("click", functi
 });
 
 document.getElementById("edit-button").addEventListener("click", function() {
-  if (UNUSED_LOADOUT) {
 
-  } else {
+  saveLoadout(SELECTED_LOADOUT);
 
-  }
 });
 
 document.getElementById("swap-button").addEventListener("click", function() {
@@ -36,5 +34,6 @@ document.getElementById("swap-button").addEventListener("click", function() {
 document.getElementById("delete-button").addEventListener("click", function() {
   deleteLoadout(SELECTED_LOADOUT);
 });
+
 
 getLoadoutsFromLocalStorage();
