@@ -53,7 +53,7 @@ function swapLoadouts(loadoutNumber1, loadoutNumber2) {
 
   var loadout1 = LOADOUTS[index1];
 
-  SWAP = false;
+  SWAPPING_LOADOUTS = false;
 
   newTabLoadouts[String(loadoutNumber2)] = loadout1;
 

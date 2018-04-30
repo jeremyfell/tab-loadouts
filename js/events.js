@@ -11,7 +11,7 @@ document.getElementById("edit-button").addEventListener("click", function() {
 });
 
 document.getElementById("swap-button").addEventListener("click", function() {
-  SWAP ? unselectSwapButton() : selectSwapButton();
+  SWAPPING_LOADOUTS ? unselectSwapButton() : selectSwapButton();
 });
 
 document.getElementById("delete-button").addEventListener("click", function() {
@@ -71,13 +71,15 @@ document.addEventListener("keyup", function(e) {
         openInfo();
         break;
       case 12:
-        saveLoadout(SELECTED_LOADOUT);
+        if (!document.getElementById("edit-button").getAttribute("disabled")) saveLoadout(SELECTED_LOADOUT);
         break;
       case 13:
-        SWAP ? unselectSwapButton() : selectSwapButton();
+        if (!document.getElementById("swap-button").getAttribute("disabled")) {
+          SWAPPING_LOADOUTS ? unselectSwapButton() : selectSwapButton();
+        }
         break;
       case 14:
-        deleteLoadout(SELECTED_LOADOUT);
+        if (!document.getElementById("delete-button").getAttribute("disabled")) deleteLoadout(SELECTED_LOADOUT);
         break;
       default:
         selectLoadout(shortcutCode);

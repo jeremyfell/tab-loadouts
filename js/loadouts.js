@@ -77,7 +77,7 @@ function selectLoadout(loadoutNumber) {
       unselectLoadout();
     }
 
-    if (SWAP) {
+    if (SWAPPING_LOADOUTS) {
 
         swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
 

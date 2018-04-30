@@ -36,12 +36,12 @@ function enableSwapButton() {
 }
 
 function selectSwapButton() {
-  SWAP = true;
+  SWAPPING_LOADOUTS = true;
   document.getElementById("swap-button").classList.add("selected-swap");
 }
 
 function unselectSwapButton() {
-  SWAP = false;
+  SWAPPING_LOADOUTS = false;
   document.getElementById("swap-button").classList.remove("selected-swap");
 }
 
