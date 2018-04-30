@@ -8,7 +8,7 @@ function allSlotsInUse() {
   return true;
 }
 
-// Converts the loadout number (what is shown on screen and accessed by the keyboard) to index (the loadouts position in the LOADOUT array)
-function loadoutNumberToIndex(number) {
-  return (parseInt(number) + 9) % 10;
+// Converts the loadout number (what is shown on screen and accessed by the keyboard) to its index (the loadout's position in the LOADOUT array)
+function loadoutNumberToIndex(loadoutNumber) {
+  return (parseInt(loadoutNumber) + 9) % 10;
 }

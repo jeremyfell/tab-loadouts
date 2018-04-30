@@ -13,34 +13,36 @@ function getLoadoutsFromLocalStorage() {
 }
 
 // Saves all tabs in the current window into a new loadout
-function saveLoadoutToLocalStorage(number) {
+function saveLoadoutToLocalStorage(loadoutNumber) {
   var loadout = {};
-  var newTabLoadout = {};
+  var storageChanges = {};
   var name = document.getElementById("loadout-name-input").value;
   document.getElementById("loadout-name-input").value = "";
 
   loadout.name = name;
-  setOpenLoadoutButtonTitle(number, name);
-  setSelectLoadoutButtonTitle(number, name);
   loadout.links = [];
+  setOpenLoadoutButtonTitle(loadoutNumber, name);
+  setSelectLoadoutButtonTitle(loadoutNumber, name);
 
   // Sets to true for special case of detecting whether all slots are used (since chrome.tabs adds a delay)
-  LOADOUTS[loadoutNumberToIndex(number)] = true;
+  LOADOUTS[loadoutNumberToIndex(loadoutNumber)] = true;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
+    // Adds all tab urls to the loadout's links
     for (var i = 0; i < tabs.length; i++) {
       tab = tabs[i];
       loadout.links.push(tab.url);
     }
 
-    LOADOUTS[loadoutNumberToIndex(number)] = loadout;
-    newTabLoadout[String(number)] = loadout;
-    chrome.storage.local.set(newTabLoadout);
+    LOADOUTS[loadoutNumberToIndex(loadoutNumber)] = loadout;
+    storageChanges[String(loadoutNumber)] = loadout;
+    chrome.storage.local.set(storageChanges);
   });
 
 }
 
-function removeLoadoutFromLocalStorage(number) {
-  LOADOUTS[loadoutNumberToIndex(number)] = null;
-  chrome.storage.local.remove(String(number));
+// Delete loadout
+function removeLoadoutFromLocalStorage(loadoutNumber) {
+  LOADOUTS[loadoutNumberToIndex(loadoutNumber)] = null;
+  chrome.storage.local.remove(String(loadoutNumber));
 }

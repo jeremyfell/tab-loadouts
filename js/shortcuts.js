@@ -1,4 +1,4 @@
-// Highlights a loadout button when the corresponding keyboard number is pressed
+// Returns the button element corresponding the shortcut key that was pressed
 function getButtonFromShortcutCode(shortcutCode) {
 
   if (shortcutCode === -1) return;
@@ -28,6 +28,8 @@ function getButtonFromShortcutCode(shortcutCode) {
 
 // Returns the number 0-9 if a number is pressed above the keyboard, or in the numpad
 // Returns 10 if a dash was pressed, as a shortcut for options
+// Returns 11 if a question mark was pressed, as a shortcut for info
+// Returns 12, 13, 14 if a, s, d, was pressed, as shortcuts for add, swap, and delete
 // Returns -1 for any other key
 function getShortcutCodeFromKeyPress(e) {
 

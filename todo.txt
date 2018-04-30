@@ -1,3 +1,43 @@
-Rename global variables
 Add info button functionality that shows a popup to explain how to use the chrome extension
-Fix bug where button must be pressed twice to activate it
+Add element blurring and clicking/entering/using shortcuts
+
+Change naming to be more consistent
+Add some more comments
+
+Organize css
+Check out blue highlight color
+Refactor
+
+
+Consider adding Ctrl shortcuts again
+
+chrome.commands.onCommand.addListener(function() {
+
+});
+
+
+
+"add": {
+  "suggested_key": {
+    "default": "Ctrl+A",
+    "mac": "Command+A",
+    "linux": "Ctrl+A"
+  },
+  "description": "Presses the add/override loadout button"
+},
+"swap": {
+  "suggested_key": {
+    "default": "Ctrl+S",
+    "mac": "Command+S",
+    "linux": "Ctrl+S"
+  },
+  "description": "Presses the swap loadouts button"
+},
+"delete": {
+  "suggested_key": {
+    "default": "Ctrl+D",
+    "mac": "Command+D",
+    "linux": "Ctrl+D"
+  },
+  "description": "Presses the delete loadout button"
+}

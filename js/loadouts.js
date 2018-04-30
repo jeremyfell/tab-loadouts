@@ -26,8 +26,8 @@ function configureLoadoutButtons() {
 }
 
 function openLoadout(loadoutNumber) {
-  var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
-  if (loadoutButton.getAttribute("disabled")) return;
+  var openLoadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
+  if (openLoadoutButton.getAttribute("disabled")) return;
 
   var currentLoadoutLinks = LOADOUTS[loadoutNumberToIndex(loadoutNumber)].links;
   if (currentLoadoutLinks.length === 0) return;
@@ -62,13 +62,7 @@ function selectLoadout(loadoutNumber) {
   var selectLoadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
   if (loadoutNumber === SELECTED_LOADOUT) {
 
-    unselectLoadout();
-    SELECTED_LOADOUT = -1;
-    disableDeleteButton();
-    disableSwapButton();
-    unselectSwapButton();
-    disableEditButton();
-    (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd();
+    disableAndUnselectAllButtons();
     document.activeElement.blur();
 
   } else {
@@ -82,6 +76,7 @@ function selectLoadout(loadoutNumber) {
         swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
 
     } else {
+
       SELECTED_LOADOUT = loadoutNumber;
       selectLoadoutButton.classList.add("selected-loadout");
 
@@ -96,9 +91,5 @@ function selectLoadout(loadoutNumber) {
       }
       enableEditButton();
     }
-
-
-
   }
-
 }
