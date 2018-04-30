@@ -3,63 +3,62 @@
     <link href="../css/popup.css" rel="stylesheet" id="popup">
   </head>
 
-  <a tabindex="2"></a>
-
   <body class="select-body">
     <div id="select-tab">
-      <div id="open-loadout-1" class="open-loadout-button button" data-index="0">1</div>
-      <div id="open-loadout-2" class="open-loadout-button button" data-index="1">2</div>
-      <div id="open-loadout-3" class="open-loadout-button button" data-index="2">3</div>
-      <div id="open-loadout-4" class="open-loadout-button button" data-index="3">4</div>
-      <div id="open-loadout-5" class="open-loadout-button button" data-index="4">5</div>
-      <div id="open-loadout-6" class="open-loadout-button button" data-index="5">6</div>
-      <div id="open-loadout-7" class="open-loadout-button button" data-index="6">7</div>
-      <div id="open-loadout-8" class="open-loadout-button button" data-index="7">8</div>
-      <div id="open-loadout-9" class="open-loadout-button button" data-index="8">9</div>
-      <div id="open-loadout-0" class="open-loadout-button button" data-index="9">0</div>
+      <button id="open-loadout-1" class="open-loadout-button button">1</button>
+      <button id="open-loadout-2" class="open-loadout-button button">2</button>
+      <button id="open-loadout-3" class="open-loadout-button button">3</button>
+      <button id="open-loadout-4" class="open-loadout-button button">4</button>
+      <button id="open-loadout-5" class="open-loadout-button button">5</button>
+      <button id="open-loadout-6" class="open-loadout-button button">6</button>
+      <button id="open-loadout-7" class="open-loadout-button button">7</button>
+      <button id="open-loadout-8" class="open-loadout-button button">8</button>
+      <button id="open-loadout-9" class="open-loadout-button button">9</button>
+      <button id="open-loadout-0" class="open-loadout-button button">0</button>
 
-
-      <div id="open-options-button" class="open-options-button button" title="Open options">
+      <button id="open-options-button" class="open-options-button button" title="Open options">
         <img id='options-icon' src="../svg/options.svg"></img>
-      </div>
+      </button>
 
     </div>
 
     <div id="edit-tab" class="invisible">
 
-      <div id="select-loadout-1" class="select-loadout-button button" data-index="0">1</div>
-      <div id="select-loadout-2" class="select-loadout-button button" data-index="1">2</div>
-      <div id="select-loadout-3" class="select-loadout-button button" data-index="2">3</div>
-      <div id="select-loadout-4" class="select-loadout-button button" data-index="3">4</div>
-      <div id="select-loadout-5" class="select-loadout-button button" data-index="4">5</div>
-      <div id="select-loadout-6" class="select-loadout-button button" data-index="5">6</div>
-      <div id="select-loadout-7" class="select-loadout-button button" data-index="6">7</div>
-      <div id="select-loadout-8" class="select-loadout-button button" data-index="7">8</div>
-      <div id="select-loadout-9" class="select-loadout-button button" data-index="8">9</div>
-      <div id="select-loadout-0" class="select-loadout-button button" data-index="9">0</div>
+      <button id="select-loadout-1" tabindex="4" class="select-loadout-button button">1</button>
+      <button id="select-loadout-2" tabindex="5" class="select-loadout-button button">2</button>
+      <button id="select-loadout-3" tabindex="6" class="select-loadout-button button">3</button>
+      <button id="select-loadout-4" tabindex="7" class="select-loadout-button button">4</button>
+      <button id="select-loadout-5" tabindex="8" class="select-loadout-button button">5</button>
+      <button id="select-loadout-6" tabindex="9" class="select-loadout-button button">6</button>
+      <button id="select-loadout-7" tabindex="10" class="select-loadout-button button">7</button>
+      <button id="select-loadout-8" tabindex="11" class="select-loadout-button button">8</button>
+      <button id="select-loadout-9" tabindex="12" class="select-loadout-button button">9</button>
+      <button id="select-loadout-0" tabindex="13" class="select-loadout-button button">0</button>
 
 
-      <div id="close-options-button" class="button" title="Close options">
+      <button id="close-options-button" tabindex="14" class="button" title="Close options">
         <img id="close-icon" src="../svg/close.svg"></img>
-      </div>
+      </button>
 
-      <div id="edit-button" disabled class="option-button button" title="Save current tabs as new loadout in the selected slot">
+      <button id="edit-button" disabled tabindex="15" class="option-button button" title="Save current tabs as new loadout in the selected slot">
         <img id="edit-icon" src="../svg/save.svg"></img>
-      </div>
+      </button>
 
-      <div id="swap-button" disabled class="option-button button" title="Swap loadout positions">
+      <button id="swap-button" disabled tabindex="16" class="option-button button" title="Swap loadout positions">
         <img id="swap-icon" src="../svg/swap.svg"></img>
-      </div>
+      </button>
 
-      <div id="delete-button" disabled class="option-button button" title="Delete loadout">
+      <button id="delete-button" disabled tabindex="17" class="option-button button" title="Delete loadout">
         <img id="delete-icon" src="../svg/delete.svg"></img>
-      </div>
+      </button>
 
       <input id="loadout-name-input" tabindex="1" spellcheck="false" placeholder="Loadout name (optional)"></input>
 
-      <div id="info-button" class="button" title="Info">
+      <button id="info-button" tabindex="2" class="button" title="Info">
         <img id="info-icon" src="../svg/info.svg"></img>
-      </div>
+      </button>
+
+      <a tabindex="3"></a>
 
     </div>
 

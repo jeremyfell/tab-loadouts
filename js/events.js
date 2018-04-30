@@ -11,12 +11,15 @@ document.getElementById("edit-button").addEventListener("click", function() {
 });
 
 document.getElementById("swap-button").addEventListener("click", function() {
-  SWAP = true;
-  selectSwapButton();
+  SWAP ? unselectSwapButton() : selectSwapButton();
 });
 
 document.getElementById("delete-button").addEventListener("click", function() {
   deleteLoadout(SELECTED_LOADOUT);
+});
+
+document.getElementById("info-button").addEventListener("click", function() {
+  openInfo();
 });
 
 document.getElementById("loadout-name-input").addEventListener("focus", function() {
@@ -63,8 +66,7 @@ document.addEventListener("keyup", function(e) {
         saveLoadout(SELECTED_LOADOUT);
         break;
       case 13:
-        SWAP = true;
-        selectSwapButton();
+        SWAP ? unselectSwapButton() : selectSwapButton();
         break;
       case 14:
         deleteLoadout(SELECTED_LOADOUT);

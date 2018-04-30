@@ -1,12 +1,3 @@
-Change buttons from div to button elements, to allow tabbing and entering to press buttons
 Rename global variables
-
-Add highlighting for all buttons
-Fix highlighting to turn off
-
-Add swap functionality, so that clicking a swap button selects it, and clicking another swap button will swap the two loadouts
-Clicking a swap button, then clicking the same one, will deselect the swap button
-Clicking a swap button, and then clicking any other button, will deselect the swap button
-
-
 Add info button functionality that shows a popup to explain how to use the chrome extension
+Fix bug where button must be pressed twice to activate it

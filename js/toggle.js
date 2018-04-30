@@ -7,11 +7,11 @@ function enableOpenLoadoutButton(loadoutNumber) {
 }
 
 function disableSelectLoadoutButton(loadoutNumber) {
-  document.getElementById("select-loadout-" + String(loadoutNumber)).setAttribute("disabled", "true");
+  document.getElementById("select-loadout-" + String(loadoutNumber)).classList.add("free");
 }
 
 function enableSelectLoadoutButton(loadoutNumber) {
-  document.getElementById("select-loadout-" + String(loadoutNumber)).removeAttribute("disabled");
+  document.getElementById("select-loadout-" + String(loadoutNumber)).classList.remove("free");
 }
 
 function unselectLoadout() {
@@ -36,10 +36,12 @@ function enableSwapButton() {
 }
 
 function selectSwapButton() {
+  SWAP = true;
   document.getElementById("swap-button").classList.add("selected-swap");
 }
 
 function unselectSwapButton() {
+  SWAP = false;
   document.getElementById("swap-button").classList.remove("selected-swap");
 }
 
@@ -67,4 +69,16 @@ function setOpenLoadoutButtonTitle(loadoutNumber, title) {
 
 function setSelectLoadoutButtonTitle(loadoutNumber, title) {
   document.getElementById("select-loadout-" + String(loadoutNumber)).title = title;
+}
+
+function highlightButton(shortcutCode) {
+  var button = getButtonFromShortcutCode(shortcutCode);
+
+  if (button.getAttribute("disabled")) return;
+  button.classList.add("highlighted");
+}
+
+function unhighlightButton(shortcutCode) {
+  var button = getButtonFromShortcutCode(shortcutCode);
+  button.classList.remove("highlighted");
 }

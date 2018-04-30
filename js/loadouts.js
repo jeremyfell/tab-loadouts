@@ -1,8 +1,35 @@
+function configureLoadoutButtons() {
+  openLoadoutButtons = document.getElementsByClassName("open-loadout-button");
+  selectLoadoutButtons = document.getElementsByClassName("select-loadout-button");
+
+  for (var i = 0; i < 10; i++) {
+    if (LOADOUTS[i]) {
+      // Sets title to the corresponding loadout name
+      openLoadoutButtons[i].title = LOADOUTS[i].name;
+      selectLoadoutButtons[i].title = LOADOUTS[i].name;
+    } else {
+      // Disables unused loadout buttons
+      openLoadoutButtons[i].setAttribute("disabled", "true");
+      selectLoadoutButtons[i].classList.add("free");
+    }
+
+    // Adds click event to open the corresponding loadout
+    openLoadoutButtons[i].addEventListener("click", function() {
+      openLoadout(parseInt(this.id.slice(-1)));
+    });
+
+    selectLoadoutButtons[i].addEventListener("click", function() {
+      selectLoadout(parseInt(this.id.slice(-1)));
+    });
+
+  }
+}
+
 function openLoadout(loadoutNumber) {
   var loadoutButton = document.getElementById("open-loadout-" + String(loadoutNumber));
   if (loadoutButton.getAttribute("disabled")) return;
 
-  var currentLoadoutLinks = LOADOUTS[String(loadoutButton.dataset.index)].links;
+  var currentLoadoutLinks = LOADOUTS[loadoutNumberToIndex(loadoutNumber)].links;
   if (currentLoadoutLinks.length === 0) return;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
@@ -31,48 +58,6 @@ function openLoadout(loadoutNumber) {
 
 }
 
-function configureLoadoutButtons() {
-  openLoadoutButtons = document.getElementsByClassName("open-loadout-button");
-  selectLoadoutButtons = document.getElementsByClassName("select-loadout-button");
-
-  for (var i = 0; i < 10; i++) {
-    if (LOADOUTS[i]) {
-      // Sets title to the corresponding loadout name
-      openLoadoutButtons[i].title = LOADOUTS[i].name;
-      selectLoadoutButtons[i].title = LOADOUTS[i].name;
-    } else {
-      // Disables unused loadout buttons
-      openLoadoutButtons[i].setAttribute("disabled", "true");
-      selectLoadoutButtons[i].setAttribute("disabled", "true");
-    }
-
-    // Adds click event to open the corresponding loadout
-    openLoadoutButtons[i].addEventListener("click", function() {
-      openLoadout(parseInt(this.id.slice(-1)));
-    });
-
-    selectLoadoutButtons[i].addEventListener("click", function() {
-      selectLoadout(parseInt(this.id.slice(-1)));
-    });
-
-  }
-}
-
-function configureSelectButton(selectButton) {
-
-  selectButton.addEventListener("click", function() {
-
-    if (this.getAttribute("disabled")) {
-
-    } else {
-
-    }
-
-  });
-
-}
-
-
 function selectLoadout(loadoutNumber) {
   var selectLoadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
   if (loadoutNumber === SELECTED_LOADOUT) {
@@ -99,7 +84,7 @@ function selectLoadout(loadoutNumber) {
       SELECTED_LOADOUT = loadoutNumber;
       selectLoadoutButton.classList.add("selected-loadout");
 
-      if (selectLoadoutButton.getAttribute("disabled")) {
+      if (selectLoadoutButton.classList.contains("free")) {
         disableDeleteButton();
         disableSwapButton();
         setEditToAdd();
@@ -115,16 +100,4 @@ function selectLoadout(loadoutNumber) {
 
   }
 
-}
-
-function highlightButton(shortcutCode) {
-  var button = getButtonFromShortcutCode(shortcutCode);
-
-  if (button.getAttribute("disabled") && !button.classList.contains("select-loadout-button")) return;
-  button.classList.add("highlighted");
-}
-
-function unhighlightButton(shortcutCode) {
-  var button = getButtonFromShortcutCode(shortcutCode);
-  button.classList.remove("highlighted");
 }

@@ -61,7 +61,7 @@ button {
 
 .button {
   display: block;
-  width: 50px;
+  width: 51px;
   height: 50px;
   float: left;
   color: white;
@@ -72,41 +72,56 @@ button {
   border-color: white;
   border-width: 0px;
   border-right-width: 1px;
+  border-right-width: 1px;
   border-style: solid;
   cursor: pointer;
 }
 
 .option-button {
-	width: 186px;
+	width: 187px;
+}
+
+#open-options-button, #close-options-button, #info-button {
+	width: 50px;
 }
 
 #delete-button {
+	width: 186px;
 	border-right-width: 0;
 }
 
+#info-button {
+	height: 50px;
+	border-top-width: 1px;
+}
+
+.select-loadout-button {
+	height: 51px;
+	border-bottom-width: 1px;
+}
 
 .open-loadout-button, .select-loadout-button, #open-options-button, #close-options-button, #info-button {
 	background-color: var(--blue);
 }
 
-.open-loadout-button:hover, .select-loadout-button:hover, #open-options-button:hover, #close-options-button:hover, #info-button:hover, .open-loadout-button.highlighted, .select-loadout-button.highlighted, #open-options-button.highlighted, #close-options-button.highlighted, #info-button.highlighted {
+.open-loadout-button:hover, .open-loadout-button:focus, .select-loadout-button:hover, .select-loadout-button:focus, #open-options-button:hover, #open-options-button:focus, #close-options-button:hover, #close-options-button:focus, #info-button:hover, #info-button:focus, .open-loadout-button.highlighted, .select-loadout-button.highlighted, #open-options-button.highlighted, #close-options-button.highlighted, #info-button.highlighted {
 	  background-color: var(--blue-light);
 }
 
-.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button[disabled], #edit-button[disabled],  #edit-button[disabled]:hover, #swap-button[disabled], #swap-button[disabled]:hover, #delete-button[disabled], #delete-button[disabled]:hover {
+.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button.free, #edit-button[disabled],  #edit-button[disabled]:hover, #swap-button[disabled], #swap-button[disabled]:hover, #delete-button[disabled], #delete-button[disabled]:hover {
   background-color: var(--gray);
   cursor: default;
 }
 
-.select-loadout-button[disabled]:hover, .select-loadout-button[disabled].highlighted {
+.select-loadout-button.free:hover, .select-loadout-button.free:focus, .select-loadout-button.free.highlighted {
 	background-color: var(--gray-light);
 }
 
-.selected-loadout, .selected-loadout:hover {
+.selected-loadout, .selected-loadout:hover, .selected-loadout:focus {
 	background-color: var(--blue-dark);
 }
 
-.selected-loadout[disabled], .selected-loadout[disabled]:hover {
+.selected-loadout.free, .selected-loadout.free:hover, .selected-loadout.free:focus {
 	background-color: var(--gray-dark);
 }
 
@@ -114,7 +129,7 @@ button {
 	background-color: var(--green);
 }
 
-#edit-button:hover, #edit-button.highlighted {
+#edit-button:hover, #edit-button:focus, #edit-button.highlighted {
 	background-color: var(--green-light);
 }
 
@@ -122,11 +137,11 @@ button {
 	background-color: var(--yellow);
 }
 
-#swap-button:hover, #swap-button.highlighted {
+#swap-button:hover, #swap-button:focus, #swap-button.highlighted {
 	background-color: var(--yellow-light);
 }
 
-#swap-button.selected-swap, #swap-button.selected-swap:hover {
+#swap-button.selected-swap, #swap-button.selected-swap:hover, #swap-button.selected-swap:focus {
 	background-color: var(--yellow-dark);
 }
 
@@ -134,7 +149,7 @@ button {
 	background-color: var(--red);
 }
 
-#delete-button:hover, #delete-button.highlighted {
+#delete-button:hover, #delete-button:focus, #delete-button.highlighted {
 	background-color: var(--red-light);
 }
 
@@ -157,21 +172,21 @@ Icons
 }
 
 #edit-icon {
-	width: 36px;
-	height: 36px;
-	margin: 7px;
+	width: 32px;
+	height: 32px;
+	margin: 9px;
 }
 
 #swap-icon {
-	width: 36px;
-	height: 36px;
-	margin: 7px;
+	width: 32px;
+	height: 32px;
+	margin: 9px;
 }
 
 #delete-icon {
-	width: 36px;
-	height: 36px;
-	margin: 7px;
+	width: 30px;
+	height: 30px;
+	margin: 10px;
 }
 
 #close-icon {
@@ -183,7 +198,8 @@ Icons
 #info-icon {
 	width: 28px;
 	height: 28px;
-	margin: 11px;
+	margin-top: 11px;
+	margin-bottom: 10px;
 }
 
 /********************
@@ -191,7 +207,7 @@ Input
 ********************/
 
 #loadout-name-input {
-	width: 510px;
+	width: 509px;
 	height: 50px;
 	font-family: Helvetica;
 	font-size: 26px;
@@ -200,4 +216,8 @@ Input
 	border-width: 2px;
 	padding-left: 10px;
 	outline: 0;
+}
+
+#loadout-name-input:focus {
+	border-color: var(--blue);
 }

@@ -28,6 +28,7 @@ function deleteLoadout(loadoutNumber) {
   unselectLoadout();
   setEditToAdd();
   disableEditButton();
+  unselectSwapButton();
   disableSwapButton();
   disableDeleteButton();
 }
@@ -40,6 +41,7 @@ function saveLoadout(loadoutNumber) {
   unselectLoadout();
   (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd();
   disableEditButton();
+  unselectSwapButton();
   disableSwapButton();
   disableDeleteButton();
 }
@@ -114,7 +116,12 @@ function swapLoadouts(loadoutNumber1, loadoutNumber2) {
 
 
 function openInfo() {
-
+  unselectLoadout();
+  (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd();
+  disableEditButton();
+  unselectSwapButton();
+  disableSwapButton();
+  disableDeleteButton();
 }
 
 chrome.commands.onCommand.addListener(function() {
