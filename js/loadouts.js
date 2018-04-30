@@ -62,14 +62,14 @@ function selectLoadout(loadoutNumber) {
   var selectLoadoutButton = document.getElementById("select-loadout-" + String(loadoutNumber));
   if (loadoutNumber === SELECTED_LOADOUT) {
 
+    unselectLoadout();
     SELECTED_LOADOUT = -1;
-    selectLoadoutButton.classList.remove("selected-loadout");
     disableDeleteButton();
     disableSwapButton();
     unselectSwapButton();
-    SWAP = false;
     disableEditButton();
-    (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd() ;
+    (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd();
+    document.activeElement.blur();
 
   } else {
 
@@ -78,7 +78,8 @@ function selectLoadout(loadoutNumber) {
     }
 
     if (SWAP) {
-      swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
+
+        swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
 
     } else {
       SELECTED_LOADOUT = loadoutNumber;

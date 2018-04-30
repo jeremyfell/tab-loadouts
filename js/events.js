@@ -30,6 +30,14 @@ document.getElementById("loadout-name-input").addEventListener("blur", function(
   ALLOW_KEYBOARD_SHORTCUTS = true;
 });
 
+document.getElementById("loadout-name-input").addEventListener("keydown", function(e) {
+  if (e.which === CHARCODE_ENTER && !document.getElementById("edit-button").getAttribute("disabled")) {
+    saveLoadout(SELECTED_LOADOUT);
+    this.blur();
+  }
+
+});
+
 // On key down, if a number is pressed, highlight its corresponding button
 document.addEventListener("keydown", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;

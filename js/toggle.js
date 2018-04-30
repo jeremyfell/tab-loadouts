@@ -73,7 +73,6 @@ function setSelectLoadoutButtonTitle(loadoutNumber, title) {
 
 function highlightButton(shortcutCode) {
   var button = getButtonFromShortcutCode(shortcutCode);
-
   if (button.getAttribute("disabled")) return;
   button.classList.add("highlighted");
 }

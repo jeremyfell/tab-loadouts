@@ -34,7 +34,7 @@
 				"mac": "Command+A",
 				"linux": "Ctrl+A"
 			},
-			"description": "Presses the add/override loadout button",
+			"description": "Presses the add/override loadout button"
 		},
 		"swap": {
 			"suggested_key": {
@@ -42,7 +42,7 @@
 				"mac": "Command+S",
 				"linux": "Ctrl+S"
 			},
-			"description": "Presses the swap loadouts button",
+			"description": "Presses the swap loadouts button"
 		},
 		"delete": {
 			"suggested_key": {
@@ -50,7 +50,7 @@
 				"mac": "Command+D",
 				"linux": "Ctrl+D"
 			},
-			"description": "Presses the delete loadout button",
+			"description": "Presses the delete loadout button"
 		}
 
 	}

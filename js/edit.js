@@ -70,6 +70,7 @@ function swapLoadouts(loadoutNumber1, loadoutNumber2) {
     chrome.storage.local.set(newTabLoadouts, function() {
 
       unselectLoadout();
+      SELECTED_LOADOUT = -1;
       unselectSwapButton();
       disableEditButton();
       disableSwapButton();
@@ -125,5 +126,5 @@ function openInfo() {
 }
 
 chrome.commands.onCommand.addListener(function() {
-  alert("hey");
+
 });
