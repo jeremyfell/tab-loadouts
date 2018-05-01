@@ -1,4 +1,6 @@
 function openEditTab() {
+  unhighlightAllButtons();
+
   document.body.className = "edit-body";
   document.getElementById("select-tab").classList.add("invisible");
   document.getElementById("edit-tab").classList.remove("invisible");
@@ -8,6 +10,7 @@ function openEditTab() {
 
 function closeEditTab() {
   disableAndUnselectAllButtons();
+  unhighlightAllButtons();
 
   document.body.className = "select-body";
   document.getElementById("select-tab").classList.remove("invisible");

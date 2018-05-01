@@ -102,6 +102,14 @@ function unhighlightButton(shortcutCode) {
   button.classList.remove("highlighted");
 }
 
+function unhighlightAllButtons() {
+  var buttons = document.getElementsByClassName("highlighted");
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("highlighted");
+  }
+}
+
 ///////////////////////////////////////////////
 // Reset all buttons, disabling and unselecting
 ///////////////////////////////////////////////
