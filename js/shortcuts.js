@@ -13,7 +13,7 @@ function getButtonFromShortcutCode(shortcutCode) {
       return document.getElementById("open-options-button");
     } else {
       return document.getElementById("close-options-button");
-    };
+    }
   } else if (shortcutCode === 11) {
     return document.getElementById("info-button");
   } else if (shortcutCode === 12) {

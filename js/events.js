@@ -41,7 +41,7 @@ document.getElementById("loadout-name-input").addEventListener("keydown", functi
 // On key down, if a number is pressed, highlight its corresponding button
 document.addEventListener("keydown", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;
-  shortcutCode = getShortcutCodeFromKeyPress(e);
+  var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
   highlightButton(shortcutCode);
 });

@@ -1,8 +1,8 @@
 function configureLoadoutButtons() {
-  openLoadoutButtons = document.getElementsByClassName("open-loadout-button");
-  selectLoadoutButtons = document.getElementsByClassName("select-loadout-button");
+  var openLoadoutButtons = document.getElementsByClassName("open-loadout-button");
+  var selectLoadoutButtons = document.getElementsByClassName("select-loadout-button");
 
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     if (LOADOUTS[i]) {
       // Sets title to the corresponding loadout name
       openLoadoutButtons[i].title = LOADOUTS[i].name;
@@ -38,7 +38,7 @@ function openLoadout(loadoutNumber) {
     // Removes all tabs in the current window except for the first tab
     if (tabs.length > 1) {
 
-      for (var i = 1; i < tabs.length; i++) {
+      for (let i = 1; i < tabs.length; i++) {
         tabIds.push(tabs[i].id);
       }
 
@@ -46,9 +46,9 @@ function openLoadout(loadoutNumber) {
     }
 
     // Updates the first tab, and creates new tabs, to create the tab loadout
-    chrome.tabs.update(tabs[0].id, {url: currentLoadoutLinks[0], active: true})
+    chrome.tabs.update(tabs[0].id, {url: currentLoadoutLinks[0], active: true});
 
-    for (var i = 1; i < currentLoadoutLinks.length; i++) {
+    for (let i = 1; i < currentLoadoutLinks.length; i++) {
       chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
     }
 

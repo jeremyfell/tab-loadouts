@@ -1,6 +1,6 @@
 // Returns true if all loadout slots are currently full
 function allSlotsInUse() {
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     if (!LOADOUTS[i]) {
       return false;
     }

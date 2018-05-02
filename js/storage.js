@@ -29,8 +29,8 @@ function saveLoadoutToLocalStorage(loadoutNumber) {
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
     // Adds all tab urls to the loadout's links
-    for (var i = 0; i < tabs.length; i++) {
-      tab = tabs[i];
+    for (let i = 0; i < tabs.length; i++) {
+      var tab = tabs[i];
       loadout.links.push(tab.url);
     }
 

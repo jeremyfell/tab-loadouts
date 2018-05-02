@@ -105,7 +105,7 @@ function unhighlightButton(shortcutCode) {
 function unhighlightAllButtons() {
   var buttons = document.getElementsByClassName("highlighted");
 
-  for (var i = 0; i < buttons.length; i++) {
+  for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("highlighted");
   }
 }
@@ -118,7 +118,7 @@ function disableAndUnselectAllButtons() {
   unselectLoadout();
   SELECTED_LOADOUT = -1;
   disableEditButton();
-  (allSlotsInUse()) ? setEditToOverwrite() : setEditToAdd();
+  allSlotsInUse() ? setEditToOverwrite() : setEditToAdd();
   unselectSwapButton();
   disableSwapButton();
   disableDeleteButton();
