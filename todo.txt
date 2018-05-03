@@ -11,36 +11,3 @@ Refactor
 Allows users to create tab loadouts
 Each loadout consists of up to 20 tabs
 One loadout can be set as the home loadout, which will load automatically when any chrome window is opened
-
-Consider adding Ctrl shortcuts again
-
-chrome.commands.onCommand.addListener(function() {
-
-});
-
-
-
-"add": {
-  "suggested_key": {
-    "default": "Ctrl+A",
-    "mac": "Command+A",
-    "linux": "Ctrl+A"
-  },
-  "description": "Presses the add/override loadout button"
-},
-"swap": {
-  "suggested_key": {
-    "default": "Ctrl+S",
-    "mac": "Command+S",
-    "linux": "Ctrl+S"
-  },
-  "description": "Presses the swap loadouts button"
-},
-"delete": {
-  "suggested_key": {
-    "default": "Ctrl+D",
-    "mac": "Command+D",
-    "linux": "Ctrl+D"
-  },
-  "description": "Presses the delete loadout button"
-}

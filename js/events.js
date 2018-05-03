@@ -41,6 +41,17 @@ document.getElementById("loadout-name-input").addEventListener("keydown", functi
 // On key down, if a number is pressed, highlight its corresponding button
 document.addEventListener("keydown", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;
+
+  if (e.which === CHARCODE_SHIFT) {
+    INSERT_LOADOUTS = true;
+    return;
+  }
+
+  if (e.which === CHARCODE_CONTROL) {
+    APPEND_LOADOUTS = true;
+    return;
+  }
+
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
   highlightButton(shortcutCode);
@@ -50,6 +61,17 @@ document.addEventListener("keydown", function(e) {
 // On key up, if a dash is pressed, open options
 document.addEventListener("keyup", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;
+
+  if (e.which === CHARCODE_SHIFT) {
+    INSERT_LOADOUTS = false;
+    return;
+  }
+
+  if (e.which === CHARCODE_CONTROL) {
+    APPEND_LOADOUTS = false;
+    return;
+  }
+
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
 

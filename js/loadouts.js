@@ -33,27 +33,57 @@ function openLoadout(loadoutNumber) {
   if (currentLoadoutLinks.length === 0) return;
 
   chrome.tabs.getAllInWindow(null, function(tabs) {
-    var tabIds = [];
+    var startIndex = 0;
 
-    // Removes all tabs in the current window except for the first tab
-    if (tabs.length > 1) {
+    if (!INSERT_LOADOUTS && !APPEND_LOADOUTS) {
+      // Removes all tabs in the current window except for the first tab
+      var tabIds = [];
 
-      for (let i = 1; i < tabs.length; i++) {
-        tabIds.push(tabs[i].id);
+      if (tabs.length > 1) {
+
+        for (let i = 1; i < tabs.length; i++) {
+          tabIds.push(tabs[i].id);
+        }
+
+        chrome.tabs.remove(tabIds);
       }
 
-      chrome.tabs.remove(tabIds);
+      // Updates the first tab
+      chrome.tabs.update(tabs[0].id, {url: currentLoadoutLinks[0], active: true});
+
+      startIndex = 1;
     }
 
-    // Updates the first tab, and creates new tabs, to create the tab loadout
-    chrome.tabs.update(tabs[0].id, {url: currentLoadoutLinks[0], active: true});
+    // Creates new tabs, to create the tab loadout
+    if (APPEND_LOADOUTS || !INSERT_LOADOUTS) {
 
-    for (let i = 1; i < currentLoadoutLinks.length; i++) {
-      chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
+      // Creates new tabs after the last tab in the window
+      for (let i = startIndex; i < currentLoadoutLinks.length; i++) {
+        chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
+      }
+
+      // Closes the extension popup
+      window.close();
+
+    } else {
+
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+        // Gets the tab position of the current selected tab
+        var currentTabIndex = tabs[0].index;
+
+        // Creates new tabs after the current selected tab in the window
+        for (let i = startIndex; i < currentLoadoutLinks.length; i++) {
+          chrome.tabs.create({url: currentLoadoutLinks[i], active: false, index: currentTabIndex + i + 1})
+        }
+
+        // Closes the extension popup
+        window.close();
+      });
+
     }
 
-    // Closes the extension popup
-    window.close();
+
   });
 
 }
