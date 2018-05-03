@@ -8,6 +8,4 @@ Organize css
 Check out blue highlight color
 Refactor
 
-Allows users to create tab loadouts
-Each loadout consists of up to 20 tabs
 One loadout can be set as the home loadout, which will load automatically when any chrome window is opened

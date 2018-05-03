@@ -42,15 +42,9 @@ document.getElementById("loadout-name-input").addEventListener("keydown", functi
 document.addEventListener("keydown", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;
 
-  if (e.which === CHARCODE_SHIFT) {
-    INSERT_LOADOUTS = true;
-    return;
-  }
+  if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = true;
 
-  if (e.which === CHARCODE_CONTROL) {
-    APPEND_LOADOUTS = true;
-    return;
-  }
+  if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = true;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
@@ -62,15 +56,9 @@ document.addEventListener("keydown", function(e) {
 document.addEventListener("keyup", function(e) {
   if (!ALLOW_KEYBOARD_SHORTCUTS) return;
 
-  if (e.which === CHARCODE_SHIFT) {
-    INSERT_LOADOUTS = false;
-    return;
-  }
+  if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = false;
 
-  if (e.which === CHARCODE_CONTROL) {
-    APPEND_LOADOUTS = false;
-    return;
-  }
+  if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = false;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;

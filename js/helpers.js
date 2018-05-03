@@ -12,3 +12,8 @@ function allSlotsInUse() {
 function loadoutNumberToIndex(loadoutNumber) {
   return (parseInt(loadoutNumber) + 9) % 10;
 }
+
+// Closes the Chrome extension popup view
+function closePopup() {
+  window.close();
+}

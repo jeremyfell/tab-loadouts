@@ -32,10 +32,33 @@ function openLoadout(loadoutNumber) {
   var currentLoadoutLinks = LOADOUTS[loadoutNumberToIndex(loadoutNumber)].links;
   if (currentLoadoutLinks.length === 0) return;
 
-  chrome.tabs.getAllInWindow(null, function(tabs) {
-    var startIndex = 0;
+  if (SHIFT_IS_PRESSED && CONTROL_IS_PRESSED) {
 
-    if (!INSERT_LOADOUTS && !APPEND_LOADOUTS) {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+      // Gets the tab position of the current selected tab
+      var currentTabIndex = tabs[0].index;
+
+      // Creates new tabs after the current selected tab in the window
+      for (let i = 0; i < currentLoadoutLinks.length; i++) {
+        chrome.tabs.create({url: currentLoadoutLinks[i], active: false, index: currentTabIndex + i + 1})
+      }
+
+      closePopup();
+    });
+
+  } else if (SHIFT_IS_PRESSED) {
+
+    // Creates new tabs after the last tab in the window
+    for (let i = 0; i < currentLoadoutLinks.length; i++) {
+      chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
+    }
+
+    closePopup();
+
+  } else {
+
+    chrome.tabs.getAllInWindow(null, function(tabs) {
       // Removes all tabs in the current window except for the first tab
       var tabIds = [];
 
@@ -51,41 +74,15 @@ function openLoadout(loadoutNumber) {
       // Updates the first tab
       chrome.tabs.update(tabs[0].id, {url: currentLoadoutLinks[0], active: true});
 
-      startIndex = 1;
-    }
-
-    // Creates new tabs, to create the tab loadout
-    if (APPEND_LOADOUTS || !INSERT_LOADOUTS) {
-
-      // Creates new tabs after the last tab in the window
-      for (let i = startIndex; i < currentLoadoutLinks.length; i++) {
+      // Creates the rest of the new tabs
+      for (let i = 1; i < currentLoadoutLinks.length; i++) {
         chrome.tabs.create({url: currentLoadoutLinks[i], active: false});
       }
 
-      // Closes the extension popup
-      window.close();
+      closePopup();
+    });
 
-    } else {
-
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-
-        // Gets the tab position of the current selected tab
-        var currentTabIndex = tabs[0].index;
-
-        // Creates new tabs after the current selected tab in the window
-        for (let i = startIndex; i < currentLoadoutLinks.length; i++) {
-          chrome.tabs.create({url: currentLoadoutLinks[i], active: false, index: currentTabIndex + i + 1})
-        }
-
-        // Closes the extension popup
-        window.close();
-      });
-
-    }
-
-
-  });
-
+  }
 }
 
 function selectLoadout(loadoutNumber) {

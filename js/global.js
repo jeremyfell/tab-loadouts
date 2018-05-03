@@ -16,12 +16,12 @@ var SWAPPING_LOADOUTS = false;
 var ALLOW_KEYBOARD_SHORTCUTS = true;
 
 // Set to true when the shift key is pressed
-// When opening a loadout, tabs will be inserted directly after the current selected tab in the window
-var INSERT_LOADOUTS = false;
+// When opening a loadout, if shift is pressed tabs will be appended after the last tab in the window
+var SHIFT_IS_PRESSED = false;
 
 // Set to true when the control key is pressed
-// When opening a loadout, tabs will be appended after the last tab in the window
-var APPEND_LOADOUTS = false;
+// When opening a loadout, if control and shift are pressed then tabs will be inserted directly after the current selected tab in the window
+var CONTROL_IS_PRESSED = false;
 
 // Charcodes for all keyboard shortcuts, used for key down and key up event listeners
 const CHARCODE_MIN_NUMBER = 48;
