@@ -95,5 +95,5 @@ function swapLoadouts(loadoutNumber1, loadoutNumber2) {
 }
 
 function openInfo() {
-  disableAndUnselectAllButtons();
+  chrome.tabs.create({url: "../html/info.html"});
 }
