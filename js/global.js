@@ -11,10 +11,6 @@ var SELECTED_LOADOUT = -1;
 var CURRENT_TAB_IS_SELECT = true;
 var SWAPPING_LOADOUTS = false;
 
-// Set to false when the loadout name input box has focus
-// This prevents typing from also triggering keyboard shortcuts
-var ALLOW_KEYBOARD_SHORTCUTS = true;
-
 // Set to true when the shift key is pressed
 // When opening a loadout, if shift is pressed tabs will be appended after the last tab in the window
 var SHIFT_IS_PRESSED = false;

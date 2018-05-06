@@ -22,28 +22,27 @@ document.getElementById("info-button").addEventListener("click", function() {
   openInfo();
 });
 
-document.getElementById("loadout-name-input").addEventListener("focus", function() {
-  ALLOW_KEYBOARD_SHORTCUTS = false;
-});
-
-document.getElementById("loadout-name-input").addEventListener("blur", function() {
-  ALLOW_KEYBOARD_SHORTCUTS = true;
-});
-
 document.getElementById("loadout-name-input").addEventListener("keydown", function(e) {
+  e.stopPropagation();
+
   if (e.which === CHARCODE_ENTER && !document.getElementById("edit-button").getAttribute("disabled")) {
     saveLoadout(SELECTED_LOADOUT);
     this.blur();
   }
 
-});
+})
+
+document.getElementById("loadout-name-input").addEventListener("keypress", function(e) {
+  e.stopPropagation();
+})
+
+document.getElementById("loadout-name-input").addEventListener("keyup", function(e) {
+  e.stopPropagation();
+})
 
 // On key down, if a number is pressed, highlight its corresponding button
 document.addEventListener("keydown", function(e) {
-  if (!ALLOW_KEYBOARD_SHORTCUTS) return;
-
   if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = true;
-
   if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = true;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);
@@ -54,10 +53,7 @@ document.addEventListener("keydown", function(e) {
 // On key up, if a number is pressed, open the corresponding tab loadout
 // On key up, if a dash is pressed, open options
 document.addEventListener("keyup", function(e) {
-  if (!ALLOW_KEYBOARD_SHORTCUTS) return;
-
   if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = false;
-
   if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = false;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);

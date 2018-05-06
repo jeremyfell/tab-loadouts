@@ -101,6 +101,7 @@ function selectLoadout(loadoutNumber) {
     if (SWAPPING_LOADOUTS) {
 
         swapLoadouts(SELECTED_LOADOUT, loadoutNumber);
+        document.activeElement.blur();
 
     } else {
 
