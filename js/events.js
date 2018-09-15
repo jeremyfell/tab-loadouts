@@ -22,10 +22,14 @@ document.getElementById("info-button").addEventListener("click", function() {
   openInfo();
 });
 
+document.getElementById("export-button").addEventListener("click", function() {
+  exportBookmarks();
+});
+
 document.getElementById("loadout-name-input").addEventListener("keydown", function(e) {
   e.stopPropagation();
 
-  if (e.which === CHARCODE_ENTER && !document.getElementById("edit-button").getAttribute("disabled")) {
+  if (e.which === CHARCODE.ENTER && !document.getElementById("edit-button").getAttribute("disabled")) {
     saveLoadout(SELECTED_LOADOUT);
     this.blur();
   }
@@ -42,8 +46,8 @@ document.getElementById("loadout-name-input").addEventListener("keyup", function
 
 // On key down, if a number is pressed, highlight its corresponding button
 document.addEventListener("keydown", function(e) {
-  if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = true;
-  if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = true;
+  if (e.which === CHARCODE.SHIFT) SHIFT_IS_PRESSED = true;
+  if (e.which === CHARCODE.CONTROL) CONTROL_IS_PRESSED = true;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
@@ -53,8 +57,8 @@ document.addEventListener("keydown", function(e) {
 // On key up, if a number is pressed, open the corresponding tab loadout
 // On key up, if a dash is pressed, open options
 document.addEventListener("keyup", function(e) {
-  if (e.which === CHARCODE_SHIFT) SHIFT_IS_PRESSED = false;
-  if (e.which === CHARCODE_CONTROL) CONTROL_IS_PRESSED = false;
+  if (e.which === CHARCODE.SHIFT) SHIFT_IS_PRESSED = false;
+  if (e.which === CHARCODE.CONTROL) CONTROL_IS_PRESSED = false;
 
   var shortcutCode = getShortcutCodeFromKeyPress(e);
   if (shortcutCode === -1) return;
@@ -74,17 +78,20 @@ document.addEventListener("keyup", function(e) {
         closeEditTab();
         break;
       case 11:
-        openInfo();
+        exportBookmarks();
         break;
       case 12:
-        if (!document.getElementById("edit-button").getAttribute("disabled")) saveLoadout(SELECTED_LOADOUT);
+        openInfo();
         break;
       case 13:
+        if (!document.getElementById("edit-button").getAttribute("disabled")) saveLoadout(SELECTED_LOADOUT);
+        break;
+      case 14:
         if (!document.getElementById("swap-button").getAttribute("disabled")) {
           SWAPPING_LOADOUTS ? unselectSwapButton() : selectSwapButton();
         }
         break;
-      case 14:
+      case 15:
         if (!document.getElementById("delete-button").getAttribute("disabled")) deleteLoadout(SELECTED_LOADOUT);
         break;
       default:

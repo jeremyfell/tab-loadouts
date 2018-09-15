@@ -13,6 +13,11 @@ function loadoutNumberToIndex(loadoutNumber) {
   return (parseInt(loadoutNumber) + 9) % 10;
 }
 
+// Converts the index (the loadout's position in the LOADOUT array) to the loadout number (what is shown on screen and accessed by the keyword)
+function indexToLoadoutNumber(index) {
+  return (parseInt(index + 1) % 10);
+}
+
 // Closes the Chrome extension popup view
 function closePopup() {
   window.close();

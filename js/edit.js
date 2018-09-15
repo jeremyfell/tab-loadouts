@@ -97,3 +97,43 @@ function swapLoadouts(loadoutNumber1, loadoutNumber2) {
 function openInfo() {
   chrome.tabs.create({url: "../html/info.html"});
 }
+
+// Exports each loadout as a folder of bookmarks in a folder within the Other Bookmarks folder
+function exportBookmarks() {
+	var folderName = prompt("Export all tab loadouts to a folder under Other Bookmarks\nSpecify the folder name:");
+
+	// If the cancel button was pressed
+	if (folderName === null) {
+		document.getElementById("export-button").blur();
+		return;
+	}
+
+	// Default folder name if none is specified
+	if (folderName === "") folderName = "Tab Loadouts";
+
+  var totalBookmarks = 0;
+  LOADOUTS.forEach(function(loadout) {
+    if (loadout) totalBookmarks += loadout.links.length;
+  });
+
+  var folderIndex = 0;
+	chrome.bookmarks.create({title: folderName}, function(mainFolder) {
+    LOADOUTS.forEach(function(loadout, i) {
+      if (!loadout) return;
+
+      chrome.bookmarks.create({title: loadout.name || String(indexToLoadoutNumber(i)), index: folderIndex++, parentId: mainFolder.id}, function(loadoutFolder) {
+        loadout.links.forEach(function(link, j) {
+          chrome.bookmarks.create({title: loadout.titles[j], url: link, index: j, parentId: loadoutFolder.id}, function() {
+            totalBookmarks--;
+            if (totalBookmarks === 0) {
+              // Opens a new tab at the chrome bookmarks page
+          		chrome.tabs.create({url: "chrome://bookmarks"});
+            }
+          });
+        });
+      });
+
+    });
+
+	});
+}

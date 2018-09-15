@@ -16,12 +16,8 @@
 		"default_popup": "html/popup.html"
 	},
 
-	"omnibox": {
-		"keyword": "/"
-	},
-
-	"permissions": ["tabs", "storage", "activeTab", "commands"],
-
+	"permissions": ["tabs", "storage", "bookmarks"],
+	
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {

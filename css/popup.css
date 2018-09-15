@@ -82,7 +82,6 @@ Buttons
   border-color: white;
   border-width: 0px;
   border-right-width: 1px;
-  border-right-width: 1px;
   border-style: solid;
   cursor: pointer;
 }
@@ -93,7 +92,7 @@ Buttons
 	cursor: pointer;
 }
 
-#open-options-button, #close-options-button, #info-button {
+#open-options-button, #close-options-button, #info-button, #export-button {
 	width: 50px;
 	border-right-width: 0;
 }
@@ -102,9 +101,16 @@ Buttons
   float: right;
 }
 
-#info-button {
+#info-button, #export-button {
 	height: 50px;
 	border-top-width: 1px;
+}
+
+#export-button {
+	height: 50px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
 }
 
 .option-button {
@@ -116,15 +122,23 @@ Buttons
 	border-right-width: 0;
 }
 
-.open-loadout-button, .select-loadout-button, #open-options-button, #close-options-button, #info-button {
+.open-loadout-button, .select-loadout-button, #open-options-button, #close-options-button, #info-button, #export-button {
 	background-color: var(--blue);
 }
 
-.open-loadout-button:hover, .open-loadout-button:focus, .select-loadout-button:hover, .select-loadout-button:focus, #open-options-button:hover, #open-options-button:focus, #close-options-button:hover, #close-options-button:focus, #info-button:hover, #info-button:focus, .open-loadout-button.highlighted, .select-loadout-button.highlighted, #open-options-button.highlighted, #close-options-button.highlighted, #info-button.highlighted {
+.open-loadout-button:hover, .open-loadout-button:focus, .open-loadout-button.highlighted,
+.select-loadout-button:hover, .select-loadout-button:focus, .select-loadout-button.highlighted,
+#open-options-button:hover, #open-options-button:focus, #open-options-button.highlighted,
+#close-options-button:hover, #close-options-button:focus, #close-options-button.highlighted,
+#info-button:hover, #info-button:focus, #info-button.highlighted,
+#export-button:hover, #export-button:focus, #export-button.highlighted {
 	  background-color: var(--blue-light);
 }
 
-.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button.free, #edit-button[disabled],  #edit-button[disabled]:hover, #swap-button[disabled], #swap-button[disabled]:hover, #delete-button[disabled], #delete-button[disabled]:hover {
+.open-loadout-button[disabled], .open-loadout-button[disabled]:hover, .select-loadout-button.free,
+#edit-button[disabled],  #edit-button[disabled]:hover,
+#swap-button[disabled], #swap-button[disabled]:hover,
+#delete-button[disabled], #delete-button[disabled]:hover {
   background-color: var(--gray);
   cursor: default;
 }
@@ -210,12 +224,19 @@ Icons
 	margin-bottom: 10px;
 }
 
+#export-icon {
+	width: 34px;
+	height: 34px;
+	margin-top: 7px;
+	margin-bottom: 6px;
+}
+
 /*///////////////////
 Input
 ///////////////////*/
 
 #loadout-name-input {
-	width: 509px;
+	width: 460px;
 	height: 50px;
 	font-family: Helvetica;
 	font-size: 26px;
@@ -224,6 +245,7 @@ Input
 	border-width: 2px;
 	padding-left: 10px;
 	outline: 0;
+	float: left;
 }
 
 #loadout-name-input:focus {

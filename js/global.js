@@ -20,15 +20,18 @@ var SHIFT_IS_PRESSED = false;
 var CONTROL_IS_PRESSED = false;
 
 // Charcodes for all keyboard shortcuts, used for key down and key up event listeners
-const CHARCODE_MIN_NUMBER = 48;
-const CHARCODE_MAX_NUMBER = 57;
-const CHARCODE_MIN_NUMPAD = 96;
-const CHARCODE_MAX_NUMPAD = 105;
-const CHARCODE_HYPHEN = 189;
-const CHARCODE_QUESTION = 191;
-const CHARCODE_A = 65;
-const CHARCODE_S = 83;
-const CHARCODE_D = 68;
-const CHARCODE_ENTER = 13;
-const CHARCODE_SHIFT = 16;
-const CHARCODE_CONTROL = 17;
+const CHARCODE = Object.freeze({
+  MIN_NUMBER: 48,
+  MAX_NUMBER: 57,
+  MIN_NUMPAD: 96,
+  MAX_NUMPAD: 105,
+  HYPHEN: 189,
+  QUESTION: 191,
+  PERIOD: 190,
+  A: 65,
+  S: 83,
+  D: 68,
+  ENTER: 13,
+  SHIFT: 16,
+  CONTROL: 17
+});

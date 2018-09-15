@@ -1,14 +1,14 @@
 // Fetches all user loadouts from Chrome local storage and puts them into the global LOADOUTS variable
-function getLoadoutsFromLocalStorage() {
+function getLoadoutsFromLocalStorage(callback) {
   chrome.storage.local.get(null, function(storage) {
 
-      LOADOUTS = [null, null, null, null, null, null, null, null, null, null];
+      LOADOUTS = Array.from(Array(10).fill(null));
 
       for (var key in storage) {
         LOADOUTS[loadoutNumberToIndex(key)] = storage[key];
       }
 
-      configureLoadoutButtons();
+      callback();
   });
 }
 
@@ -21,6 +21,7 @@ function saveLoadoutToLocalStorage(loadoutNumber) {
 
   loadout.name = name;
   loadout.links = [];
+  loadout.titles = [];
   setOpenLoadoutButtonTitle(loadoutNumber, name);
   setSelectLoadoutButtonTitle(loadoutNumber, name);
 
@@ -32,6 +33,7 @@ function saveLoadoutToLocalStorage(loadoutNumber) {
     for (let i = 0; i < tabs.length; i++) {
       var tab = tabs[i];
       loadout.links.push(tab.url);
+      loadout.titles.push(tab.title);
     }
 
     LOADOUTS[loadoutNumberToIndex(loadoutNumber)] = loadout;
