@@ -35,6 +35,12 @@ Select a loadout to delete, and click on the red delete button.
 
 ![delete](https://user-images.githubusercontent.com/31748813/39454974-0114d4ba-4c93-11e8-90c8-572f140a599c.png)
 
+Appending and inserting a loadout
+------
+By default, when opening a loadout it replaces all tabs in the current window.
+By holding Shift before selecting a loadout, the current tabs will be unaffected, and the loadout tabs will be appended after the last tab in the window.
+By holding Ctrl+Shift before selecting a loadout, the current tabs will be unaffected, and the loadout tabs will be inserted after the currently selected tab.
+
 Keyboard shortcuts
 ------
 | Function | Shortcut
