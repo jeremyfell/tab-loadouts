@@ -1,0 +1,48 @@
+{
+  
+  "manifestExtensionDescription": {
+    "description": "Description of the Chrome extension",
+    "message": "Easily create tab loadouts, which will open several links in different tabs with a simple keyboard shortcut"
+  },
+  "selectOptionsButtonTitle": {
+    "description": "",
+    "message": "Open options"
+  },
+  "editSaveButtonTitle": {
+    "description": "",
+    "message": "Save current tabs as new loadout in the selected slot"
+  },
+  "editOverwriteButtonTitle": {
+    "description": "",
+    "message": "Overwrite loadout in the selected slot with current tabs"
+  },
+  "editSwapButtonTitle": {
+    "description": "",
+    "message": "Swap loadout slot positions"
+  },
+  "editDeleteButtonTitle": {
+    "description": "",
+    "message": "Delete loadout"
+  },
+  "editExportButtonTitle": {
+    "description": "",
+    "message": "Export"
+  },
+  "editInfoButtonTitle": {
+    "description": "",
+    "message": "Info"
+  },
+  "editCloseButtonTitle": {
+    "description": "",
+    "message": "Close options"
+  },
+  "editLoadoutNameInputPlaceholder": {
+    "description": "",
+    "message": "Loadout name (optional)"
+  },
+  "editExportPrompt": {
+    "description": "",
+    "message": "Export all tab loadouts to a folder under Other Bookmarks\nSpecify the folder name:"
+  }
+
+}

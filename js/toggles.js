@@ -66,12 +66,12 @@ function unselectSwapButton() {
 //////////////////////////////////////////////////
 
 function setEditToAdd() {
-  document.getElementById("edit-button").title = "Save current tabs as new loadout in the selected slot";
+  document.getElementById("edit-button").title = chrome.i18n.getMessage("__MSG_editSaveButtonTitle__");
   document.getElementById("edit-icon").setAttribute("src", "../svg/save.svg");
 }
 
 function setEditToOverwrite() {
-  document.getElementById("edit-button").title = "Overwrite loadout in the selected slot with current tabs";
+  document.getElementById("edit-button").title = chrome.i18n.getMessage("__MSG_editOverwriteButtonTitle__");
   document.getElementById("edit-icon").setAttribute("src", "../svg/edit.svg");
 }
 

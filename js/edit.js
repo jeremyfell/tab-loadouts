@@ -100,7 +100,7 @@ function openInfo() {
 
 // Exports each loadout as a folder of bookmarks in a folder within the Other Bookmarks folder
 function exportBookmarks() {
-	var folderName = prompt("Export all tab loadouts to a folder under Other Bookmarks\nSpecify the folder name:");
+	var folderName = prompt(chrome.i18n.getMessage("editExportPrompt"));
 
 	// If the cancel button was pressed
 	if (folderName === null) {

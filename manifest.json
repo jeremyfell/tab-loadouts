@@ -3,7 +3,7 @@
 	"name": "Tab Loadouts",
 	"version": "1.0",
 
-	"description": "Easily create tab loadouts, which will open several links in different tabs with a simple keyboard shortcut",
+	"description": "__MSG_manifestExtensionDescription",
 	"icons": {
 		"16": "icons/16.png"
 	},
@@ -17,12 +17,13 @@
 	},
 
 	"permissions": ["tabs", "storage", "bookmarks"],
-	
+
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {
 				"default": "Ctrl+Space"
 			}
 		}
-	}
+	},
+	"default_locale": "en"
 }
