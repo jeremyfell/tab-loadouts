@@ -3,7 +3,7 @@
 	"name": "Tab Loadouts",
 	"version": "1.0",
 
-	"description": "__MSG_manifestExtensionDescription",
+	"description": "__MSG_manifestExtensionDescription__",
 	"icons": {
 		"16": "icons/16.png"
 	},
